@@ -1,5 +1,9 @@
 ## Documentation
 
+## Database Schema
+
+![Soundcloud Database](./db_schema.png)
+
 ## Get the Current User
 Returns the Information about the current user that is logged in.
 
