@@ -16,7 +16,7 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.json());
 
-
+app.use(routes);
 // Security Middleware
 if (!isProduction) {
   // enable cors only in development
@@ -69,6 +69,6 @@ app.use((err, _req, res, _next) => {
   });
 });
 
-app.use(routes);
+
 
 module.exports = app;
