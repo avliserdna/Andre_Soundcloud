@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  },
+  "name": "andre_soundcloud",
+  "description": "## Database Schema",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "npm --prefix backend install backend",
+    "dev:backend": "npm install --prefix backend start",
+    "sequelize": "npm run --prefix backend sequelize",
+    "sequelize-cli": "npm run --prefix backend sequelize-cli",
+    "start": "npm start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avliserdna/Andre_Soundcloud.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avliserdna/Andre_Soundcloud/issues"
+  },
+  "homepage": "https://github.com/avliserdna/Andre_Soundcloud#readme"
+}
