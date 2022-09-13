@@ -15,19 +15,25 @@ module.exports = {
     */
     await queryInterface.bulkInsert('Users', [
       {
-        email: 'demo@user.io',
-        username: 'Demo-lition',
-        hashedPassword: bcrypt.hashSync('password')
+        firstName: 'Andre',
+        lastName: 'Silva',
+        email: 'andre.christian.silva@gmail.com',
+        username: 'zhengM',
+        password: bcrypt.hashSync('ivalice')
       },
       {
-        email: 'user1@user.io',
-        username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync('password2')
+        firstName: 'Lily',
+        lastName: 'Cui',
+        email: 'lilycui@gmail.com',
+        username: 'EveB',
+        password: bcrypt.hashSync('missymoo')
       },
       {
-        email: 'user2@user.io',
-        username: 'FakeUser2',
-        hashedPassword: bcrypt.hashSync('password3')
+        firstName: 'Colin',
+        lastName: 'Robinson',
+        email: 'colinrobinson@wwdits.com',
+        username: 'EnergyVamp24',
+        password: bcrypt.hashSync('password3')
       }
     ], {})
   },
@@ -40,7 +46,7 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     await queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
+      username: { [Op.in]: ['zhengM', 'EveB', 'EnergyVamp24'] }
     }, {});
   }
 };

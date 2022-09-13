@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     toSafeObject() {
-      const { id, username, email } = this; // context will be the User instance
-      return { id, username, email };
+      const { firstName, lastName, id, username, email } = this; // context will be the User instance
+      return { firstName, lastName, id, username, email };
     }
 
-    validatePassword(password) {
-      return bcrypt.compareSync(password, this.hashedPassword.toString());
+    validatePassword(password_input) {
+      return bcrypt.compareSync(password_input, this.password.toString());
     }
 
     static getCurrentUserById(id) {
@@ -39,12 +39,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-    static async signup({ username, email, password }) {
+    static async signup({ firstName, lastName, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
+        firstName,
+        lastName,
         username,
         email,
-        hashedPassword
+        password: hashedPassword
       });
       return await User.scope('currentUser').findByPk(user.id);
     }
@@ -53,6 +55,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -74,7 +84,7 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true
       }
     },
-    hashedPassword: {
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -86,12 +96,12 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     defaultScope: {
       attributes: {
-        exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
+        exclude: ["password", "email", "createdAt", "updatedAt"]
       }
     },
     scopes: {
       currentUser: {
-        attributes: { exclude: ["hashedPassword"] }
+        attributes: { exclude: ["password"] }
       },
       loginUser: {
         attributes: {}
