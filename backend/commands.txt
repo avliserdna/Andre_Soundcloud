@@ -1,0 +1,5 @@
+npx sequelize model:generate --name Song --attributes userId:integer,albumId:integer,title:string,description:string,url:string,previewImage:string
+npx sequelize model:generate --name Album --attributes userId:integer,title:string,description:string,previewImage:string
+npx sequelize model:generate --name Playlists --attributes userId:integer,name:string,previewImage:string
+npx sequelize model:generate --name Comments --attributes userId:integer,songId:integer,body:string
+npx sequelize model:generate --name PlaylistSongs --attributes songId:integer,playlistId:integer
