@@ -29,11 +29,25 @@ module.exports = {
         password: bcrypt.hashSync('missymoo')
       },
       {
-        firstName: 'Colin',
-        lastName: 'Robinson',
-        email: 'colinrobinson@wwdits.com',
-        username: 'EnergyVamp24',
-        password: bcrypt.hashSync('password3')
+        firstName: 'Edwin',
+        lastName: 'Purificacion',
+        email: 'e-dupz@gmail.com',
+        username: 'astaShadow',
+        password: bcrypt.hashSync('fellcleave')
+      },
+      {
+        firstName: 'Amy',
+        lastName: 'Lee',
+        email: 'evanescence@band.io',
+        username: 'Evanescence',
+        password: bcrypt.hashSync("wakemeup")
+      },
+      {
+        firstName: 'Mike',
+        lastName: 'Shinoda',
+        email: 'linkinpark@band.io',
+        username: "LinkinPark",
+        password: bcrypt.hashSync("ripchester2017")
       }
     ], {})
   },
@@ -46,7 +60,7 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     await queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['zhengM', 'EveB', 'EnergyVamp24'] }
+      username: { [Op.in]: ['zhengM', 'EveB', 'EnergyVamp24', 'astaShadow', 'Evanescence', 'LinkinPark'] }
     }, {});
   }
 };
