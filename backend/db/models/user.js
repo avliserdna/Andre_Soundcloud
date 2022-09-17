@@ -54,7 +54,8 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(
         models.Song, {
         foreignKey: "userId",
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
+        as: "Artist"
       }
       )
 
@@ -119,21 +120,30 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60, 60]
       }
+    },
+    previewImage: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   }, {
     sequelize,
     modelName: 'User',
     defaultScope: {
       attributes: {
-        exclude: ["password", "email", "createdAt", "updatedAt"]
+        exclude: ["password", "email", "createdAt", "updatedAt", "previewImage"]
       }
     },
     scopes: {
       currentUser: {
-        attributes: { exclude: ["password"] }
+        attributes: { exclude: ["password", "previewImage"] }
       },
       loginUser: {
         attributes: {}
+      },
+      artist: {
+        attributes: {
+          exclude: ["firstName", "lastName", "password", "email", "createdAt", "updatedAt"]
+        }
       }
     }
   });

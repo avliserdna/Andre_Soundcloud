@@ -33,7 +33,7 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     await queryInterface.bulkDelete('Playlists', {
-      name: { [Op.in]: ['Edgy Music for Teens', 'gonna fist fite u'] }
+      name: { [Op.in]: ['Lofi-Hip Hop Beats', 'gonna fist fite u'] }
     })
   }
 };

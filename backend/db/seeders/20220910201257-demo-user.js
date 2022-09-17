@@ -74,7 +74,7 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     await queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['zhengM', 'EveB', 'EnergyVamp24', 'astaShadow', 'Evanescence', 'LinkinPark'] }
+      username: { [Op.in]: ['zhengM', 'EveB', 'EnergyVamp24', 'astaShadow', 'Evanescence', 'LinkinPark', 'potsu'] }
     }, {});
   }
 };
