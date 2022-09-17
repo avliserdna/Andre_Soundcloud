@@ -48,6 +48,20 @@ module.exports = {
         email: 'linkinpark@band.io',
         username: "LinkinPark",
         password: bcrypt.hashSync("ripchester2017")
+      },
+      {
+        firstName: "Colin",
+        lastName: "Robinson",
+        email: 'colin_robinson@vamp.io',
+        username: "EnergyVamp24",
+        password: bcrypt.hashSync("boring")
+      },
+      {
+        firstName: "Matthew",
+        lastName: "Floyd",
+        email: 'potsu@band.io',
+        username: 'potsu',
+        password: bcrypt.hashSync("lofibeats")
       }
     ], {})
   },

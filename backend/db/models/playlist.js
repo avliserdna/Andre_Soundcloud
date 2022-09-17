@@ -13,14 +13,16 @@ module.exports = (sequelize, DataTypes) => {
       Playlist.belongsTo(
         models.User,
         {
-          foreignKey: 'userId'
+          foreignKey: 'userId',
+          onDelete: 'CASCADE'
         }
       )
 
       Playlist.belongsToMany(
         models.Song,
         {
-          through: models.PlaylistSongs
+          through: models.PlaylistSongs,
+          onDelete: 'CASCADE'
         }
       )
     }

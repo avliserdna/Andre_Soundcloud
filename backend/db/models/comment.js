@@ -13,14 +13,16 @@ module.exports = (sequelize, DataTypes) => {
       Comment.belongsTo(
         models.User,
         {
-          foreignKey: 'userId'
+          foreignKey: 'userId',
+          onDelete: 'CASCADE'
         }
       )
 
       Comment.belongsTo(
         models.Song,
         {
-          foreignKey: 'songId'
+          foreignKey: 'songId',
+          onDelete: 'CASCADE'
         }
       )
     }

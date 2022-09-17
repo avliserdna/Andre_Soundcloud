@@ -13,7 +13,8 @@ module.exports = {
         allowNull: false,
         references: {
           model: "Users",
-          key: "id"
+          key: "id",
+          onDelete: 'CASCADE'
         }
       },
       songId: {
@@ -21,7 +22,8 @@ module.exports = {
         allowNull: false,
         references: {
           model: "Songs",
-          key: "id"
+          key: "id",
+          onDelete: 'CASCADE'
         }
       },
       body: {
@@ -30,11 +32,13 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },
