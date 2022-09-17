@@ -99,6 +99,14 @@ router.put('/:songId', validateSong, async (req, res, next) => {
     return next(err);
   }
 
+  if (req.user.id !== song.userId) {
+    const err = new Error('Forbidden');
+    err.status = 403;
+    err.title = 'Forbidden';
+    err.errors = ['Not Authorized to add to album!']
+    return next(err);
+  }
+
   await song.update({
     albumId,
     userId: req.user.id,
