@@ -58,7 +58,7 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     await queryInterface.bulkDelete('Songs', {
-      title: { [Op.in]: ['Bring Me to Life', 'Numb', 'Breaking The Habit'] }
+      title: { [Op.in]: ['Bring Me to Life', 'Numb', 'Breaking The Habit', 'just friends'] }
     })
   }
 };

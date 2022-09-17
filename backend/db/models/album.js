@@ -47,6 +47,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Album',
+    scope: {
+      simpleView: {
+        attributes: {
+          exclude: ["userId", "description", "createdAt", "updatedAt"]
+        }
+      }
+    }
   });
   return Album;
 };

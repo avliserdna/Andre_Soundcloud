@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
         models.User,
         {
           foreignKey: 'userId',
-          onDelete: 'CASCADE'
+          onDelete: 'CASCADE',
+          as: "Artist"
         }
       )
 
@@ -34,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       )
 
-      Song.hasMany(
+      Song.belongsToMany(
         models.Playlist,
         {
           through: models.PlaylistSongs,
@@ -70,7 +71,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Song',
+    modelName: 'Song'
   });
   return Song;
 };
