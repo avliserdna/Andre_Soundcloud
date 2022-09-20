@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         {
           foreignKey: "userId",
           onDelete: 'CASCADE'
+
         }
       )
 
@@ -22,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         models.Song,
         {
           foreignKey: 'albumId',
-          onDelete: 'CASCADE'
+          onDelete: 'CASCADE',
         }
       )
     }
@@ -47,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Album',
-    scope: {
+    scopes: {
       simpleView: {
         attributes: {
           exclude: ["userId", "description", "createdAt", "updatedAt"]

@@ -1,6 +1,6 @@
 const express = require('express')
 const { setTokenCookie, restoreUser } = require('../../utils/auth.js');
-const { User, Song, Album } = require('../../db/models');
+const { User, Song, Album, Comment } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { handle } = require('express/lib/router/index.js');
@@ -13,6 +13,13 @@ const validateSong = [
   check('url')
     .exists({ checkFalsy: true })
     .withMessage('Audio is required'),
+  handleValidationErrors
+];
+
+const validateComments = [
+  check('body')
+    .exists({ checkFalsy: true })
+    .withMessage('Body is required'),
   handleValidationErrors
 ];
 
@@ -40,7 +47,7 @@ router.get('/:songId', async (req, res, next) => {
       model: User.scope("artist"),
       as: 'Artist'
     }, {
-      model: Album
+      model: Album.scope("simpleView")
     }]
   })
 
@@ -139,4 +146,45 @@ router.delete('/:songId', async (req, res, next) => {
   })
 })
 
+router.get('/:songId/comments', async (req, res, next) => {
+  const { songId } = req.params;
+  const song = await Song.findByPk(songId)
+  if (!song) {
+    const err = new Error('Not Found');
+    err.status = 404;
+    err.title = 'Not Found';
+    err.errors = ['Song does not exist!'];
+    return next(err);
+  }
+
+
+  const comments = await Comment.findAll({
+    where: {
+      songId: song.id
+    },
+    include: {
+      model: User
+    }
+  })
+
+  return res.json(comments)
+})
+
+router.post('/:songId/comments', validateComments, async (req, res, next) => {
+  const { songId } = req.params;
+  const song = await Song.findByPk(songId)
+  if (!song) {
+    const err = new Error('Not Found');
+    err.status = 404;
+    err.title = 'Not Found';
+    err.errors = ['Song does not exist!'];
+    return next(err);
+  }
+
+  const newComment = await song.createComment({
+    body: req.body.body,
+    userId: req.user.id
+  })
+  return res.json(newComment)
+})
 module.exports = router;
