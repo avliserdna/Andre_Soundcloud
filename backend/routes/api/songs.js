@@ -24,7 +24,120 @@ const validateComments = [
 ];
 
 router.get('/', async (req, res, next) => {
-  const songs = await Song.findAll();
+
+  let { page, size, title, createdAt } = req.query;
+
+  if (JSON.parse(page) === 0) {
+    const err = new Error('Bad Request');
+    err.status = 400;
+    err.title = 'Bad request';
+    err.errors = ["Page must be greater than 0"]
+    return next(err);
+  }
+
+  if (JSON.parse(size) === 0) {
+    const err = new Error('Bad Request');
+    err.status = 400;
+    err.title = 'Bad request';
+    err.errors = ["Size must be greater than 0"]
+    return next(err);
+  }
+
+  if (!page) {
+    page = 1
+  }
+
+  if (typeof JSON.parse(page) !== "number") {
+    const err = new Error('Bad Request');
+    err.status = 400;
+    err.title = 'Bad request';
+    err.errors = ["Page must be a number"]
+    return next(err);
+  }
+  else if (JSON.parse(page) < 0) {
+    const err = new Error('Bad Request');
+    err.status = 400;
+    err.title = 'Bad request';
+    err.errors = ["Page must be greater than 0"]
+    return next(err);
+  }
+
+  if (!size) {
+    size = 5
+  }
+
+  if (typeof JSON.parse(size) !== "number") {
+    const err = new Error('Bad Request');
+    err.status = 400;
+    err.title = 'Bad request';
+    err.errors = ["Size must be a number"]
+    return next(err);
+  }
+  else if (JSON.parse(size) < 0) {
+    const err = new Error('Bad Request');
+    err.status = 400;
+    err.title = 'Bad request';
+    err.errors = ["Size must be greater than 0"]
+    return next(err);
+  }
+
+
+
+  if (title) {
+    if (typeof JSON.parse(title) !== "string") {
+      const err = new Error('Bad Request');
+      err.status = 400;
+      err.title = 'Bad request';
+      err.errors = ["Title must be characters!"]
+      return next(err);
+    }
+    const titleSong = await Song.findAll({
+      where: {
+        title
+      },
+      limit: size,
+      offset: (page - 1) * size
+    });
+
+    if (!titleSong) {
+      return res.json({
+        status: "404",
+        message: "No song found with the title!"
+      })
+    }
+
+    return res.json(titleSong)
+  }
+
+  if (createdAt) {
+    if (typeof JSON.parse(title) !== "date") {
+      const err = new Error('Bad Request');
+      err.status = 400;
+      err.title = 'Bad request';
+      err.errors = ["Proper date format must be provided!"]
+      return next(err);
+    }
+    const createdAtSong = await Song.findAll({
+      where: {
+        createdAt
+      },
+      limit: size,
+      offset: (page - 1) * size
+    })
+
+    if (!createdAtSong) {
+      return res.json({
+        status: "404",
+        message: "No song found with the date!"
+      })
+    }
+    return res.json(createdAtSong)
+  }
+
+  const songs = await Song.findAll({
+    limit: size,
+    offset: (page - 1) * size
+  });
   return res.json(songs)
 })
 

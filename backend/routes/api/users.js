@@ -1,10 +1,10 @@
 // backend/routes/api/users.js
-const express = require('express')
-
+const express = require('express');
+const { Sequelize } = require('sequelize');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Song, Album, Playlist } = require('../../db/models');
 
 const router = express.Router();
 
@@ -46,5 +46,79 @@ router.post(
     });
   }
 );
+
+router.get('/:userId', async (req, res, next) => {
+  const { userId } = req.params;
+  // const allSongs = await Song.count({
+  //   where: {
+  //     userId
+  //   }
+  // })
+  const user = await User.scope("artist").findByPk(userId, {
+    include: [{
+      model: Song,
+      attributes: [[Sequelize.fn("COUNT", Sequelize.col('Artist.id')),
+        "totalSongs"]],
+      as: "Artist"
+    },
+    // Review Sequelize literal syntax
+    {
+      model: Album,
+      attributes: [[Sequelize.fn("COUNT", Sequelize.col('Albums.id')),
+        "totalAlbums"]]
+    }
+    ]
+  });
+  if (!user) {
+    const err = new Error('Not Found');
+    err.status = 404;
+    err.title = 'Not Found';
+    err.errors = ['User does not exist!'];
+    return next(err);
+  }
+
+  return res.json(user)
+})
+
+router.get('/:userId/songs', async (req, res, next) => {
+  const { userId } = req.params;
+
+  const user = await User.findByPk(userId, {
+    include: {
+      model: Song,
+      as: "Artist"
+    }
+  });
+
+  if (!user) {
+    const err = new Error('Not Found');
+    err.status = 404;
+    err.title = 'Not Found';
+    err.errors = ['User does not exist!'];
+    return next(err);
+  }
+
+  return res.json(user)
+})
+
+router.get('/:userId/playlists', async (req, res, next) => {
+  const { userId } = req.params;
+
+  const user = await User.findByPk(userId, {
+    include: {
+      model: Playlist
+    }
+  })
+
+  if (!user) {
+    const err = new Error('Not Found');
+    err.status = 404;
+    err.title = 'Not Found';
+    err.errors = ['User does not exist!'];
+    return next(err);
+  }
+
+  return res.json(user)
+})
 
 module.exports = router;

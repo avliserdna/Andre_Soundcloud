@@ -14,8 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         models.User,
         {
           foreignKey: 'userId',
-          onDelete: 'CASCADE',
-          as: "Artist"
+          onDelete: 'CASCADE'
         }
       )
 
