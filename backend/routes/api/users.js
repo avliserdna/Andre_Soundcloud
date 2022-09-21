@@ -66,7 +66,8 @@ router.get('/:userId', async (req, res, next) => {
       attributes: [[Sequelize.fn("COUNT", Sequelize.col('Albums.id')),
         "totalAlbums"]]
     }
-    ]
+    ],
+    group: ['User.id']
   });
   if (!user) {
     const err = new Error('Not Found');
