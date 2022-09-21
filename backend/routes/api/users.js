@@ -73,7 +73,7 @@ router.get('/:userId', async (req, res, next) => {
       attributes: [],
     }
     ],
-    group: ["User.id"]
+    group: ["User.id", "Songs.id"]
   });
   if (!user) {
     const err = new Error('Not Found');
