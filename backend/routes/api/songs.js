@@ -157,8 +157,7 @@ router.get('/:songId', async (req, res, next) => {
       id: songId
     },
     include: [{
-      model: User.scope("artist"),
-      as: 'Artist'
+      model: User.scope("artist")
     }, {
       model: Album.scope("simpleView")
     }]

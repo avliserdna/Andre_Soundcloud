@@ -57,9 +57,8 @@ router.get('/:userId', async (req, res, next) => {
   const user = await User.scope("artist").findByPk(userId, {
     include: [{
       model: Song,
-      attributes: [[Sequelize.fn("COUNT", Sequelize.col('Artist.id')),
-        "totalSongs"]],
-      as: "Artist"
+      attributes: [[Sequelize.fn("COUNT", Sequelize.col('Songs.id')),
+        "totalSongs"]]
     },
     // Review Sequelize literal syntax
     {
