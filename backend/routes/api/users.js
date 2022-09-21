@@ -65,7 +65,7 @@ router.get('/:userId', async (req, res, next) => {
     },
     include: [{
       model: Song,
-      attributes: []
+      attributes: ["previewImage"]
     },
     // Review Sequelize literal syntax
     {
