@@ -72,7 +72,8 @@ router.get('/:userId', async (req, res, next) => {
       model: Album,
       attributes: [],
     }
-    ]
+    ],
+    group: ["User.id"]
   });
   if (!user) {
     const err = new Error('Not Found');
