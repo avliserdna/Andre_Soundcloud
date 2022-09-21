@@ -69,7 +69,7 @@ router.get('/:userId', async (req, res, next) => {
       group: ["Albums.id"]
     }
     ],
-    group: ["Users.id"]
+    group: ["User.id"]
   });
   if (!user) {
     const err = new Error('Not Found');
