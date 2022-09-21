@@ -59,17 +59,17 @@ router.get('/:userId', async (req, res, next) => {
       model: Song,
       attributes: [[Sequelize.fn("COUNT", Sequelize.col('Songs.id')),
         "totalSongs"]],
-      group: ['Song.id']
+      group: ['Songs.id']
     },
     // Review Sequelize literal syntax
     {
       model: Album,
       attributes: [[Sequelize.fn("COUNT", Sequelize.col('Albums.id')),
         "totalAlbums"]],
-      group: ["Album.id"]
+      group: ["Albums.id"]
     }
     ],
-    group: ["User.id"]
+    group: ["Users.id"]
   });
   if (!user) {
     const err = new Error('Not Found');
