@@ -55,21 +55,24 @@ router.get('/:userId', async (req, res, next) => {
   //   }
   // })
   const user = await User.scope("artist").findByPk(userId, {
+    attributes: {
+      include: [
+        [Sequelize.fn("COUNT", Sequelize.col('Songs.id')),
+          "totalSongs"],
+        [Sequelize.fn("COUNT", Sequelize.col('Albums.id')),
+          "totalAlbums"]
+      ]
+    },
     include: [{
       model: Song,
-      attributes: [[Sequelize.fn("COUNT", Sequelize.col('Songs.id')),
-        "totalSongs"]],
-      group: ['Songs.id']
+      attributes: []
     },
     // Review Sequelize literal syntax
     {
       model: Album,
-      attributes: [[Sequelize.fn("COUNT", Sequelize.col('Albums.id')),
-        "totalAlbums"]],
-      group: ["Albums.id"]
+      attributes: [],
     }
-    ],
-    group: ["User.id"]
+    ]
   });
   if (!user) {
     const err = new Error('Not Found');
