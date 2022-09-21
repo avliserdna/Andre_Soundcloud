@@ -27,21 +27,26 @@ router.get('/', async (req, res, next) => {
 
   let { page, size, title, createdAt } = req.query;
 
-  if (JSON.parse(page) === 0) {
-    const err = new Error('Bad Request');
-    err.status = 400;
-    err.title = 'Bad request';
-    err.errors = ["Page must be greater than 0"]
-    return next(err);
+  if (page) {
+    if (JSON.parse(page) === 0) {
+      const err = new Error('Bad Request');
+      err.status = 400;
+      err.title = 'Bad request';
+      err.errors = ["Page must be greater than 0"]
+      return next(err);
+    }
   }
 
-  if (JSON.parse(size) === 0) {
-    const err = new Error('Bad Request');
-    err.status = 400;
-    err.title = 'Bad request';
-    err.errors = ["Size must be greater than 0"]
-    return next(err);
+  if (size) {
+    if (JSON.parse(size) === 0) {
+      const err = new Error('Bad Request');
+      err.status = 400;
+      err.title = 'Bad request';
+      err.errors = ["Size must be greater than 0"]
+      return next(err);
+    }
   }
+
 
   if (!page) {
     page = 1
@@ -80,9 +85,6 @@ router.get('/', async (req, res, next) => {
     err.errors = ["Size must be greater than 0"]
     return next(err);
   }
-
-
-
   if (title) {
     if (typeof JSON.parse(title) !== "string") {
       const err = new Error('Bad Request');
@@ -108,7 +110,6 @@ router.get('/', async (req, res, next) => {
 
     return res.json(titleSong)
   }
-
   if (createdAt) {
     if (typeof JSON.parse(title) !== "date") {
       const err = new Error('Bad Request');
