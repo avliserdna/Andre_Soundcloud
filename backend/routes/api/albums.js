@@ -18,6 +18,15 @@ router.get('/', async (req, res, next) => {
   return res.json(albums)
 })
 
+router.get('/current', async (req, res, next) => {
+  const userAlbums = await Album.findAll({
+    where: {
+      userId: req.user.id
+    }
+  })
+  return res.json(userAlbums)
+})
+
 router.post('/', validateAlbum, async (req, res, next) => {
   const { title, description, url, imageUrl } = req.body;
   const newAlbum = await Album.create({
@@ -104,4 +113,6 @@ router.delete('/:albumId', async (req, res, next) => {
     "statusCode": 200
   })
 })
+
+
 module.exports = router;

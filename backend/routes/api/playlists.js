@@ -34,6 +34,26 @@ router.post('/', requireAuth, validatePlaylists, async (req, res, next) => {
   return res.json(newPlaylist)
 })
 
+router.get('/:playlistId', async (req, res, next) => {
+  const { playlistId } = req.params;
+  const playlist = await Playlist.findByPk(playlistId,
+    {
+      include: {
+        model: Song
+      }
+    })
+
+  if (!playlist) {
+    const err = new Error('Not Found');
+    err.status = 404;
+    err.title = 'Not Found';
+    err.errors = ['Playlist does not exist!'];
+    return res.json(err);
+  }
+
+  return res.json(playlist)
+})
+
 router.post('/:playlistId/songs', requireAuth, async (req, res, next) => {
   const { playlistId } = req.params;
   const { songId } = req.body;
@@ -67,26 +87,6 @@ router.post('/:playlistId/songs', requireAuth, async (req, res, next) => {
   const playlistSong = await playlist.addSong(song)
 
   return res.json(playlistSong)
-})
-
-router.get('/:playlistId', async (req, res, next) => {
-  const { playlistId } = req.params;
-  const playlist = await Playlist.findByPk(playlistId,
-    {
-      include: {
-        model: Song
-      }
-    })
-
-  if (!playlist) {
-    const err = new Error('Not Found');
-    err.status = 404;
-    err.title = 'Not Found';
-    err.errors = ['Playlist does not exist!'];
-    return res.json(err);
-  }
-
-  return res.json(playlist)
 })
 
 router.put('/:playlistId', requireAuth, validatePlaylists, async (req, res, next) => {

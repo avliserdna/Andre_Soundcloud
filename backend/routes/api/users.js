@@ -84,8 +84,7 @@ router.get('/:userId/songs', async (req, res, next) => {
 
   const user = await User.findByPk(userId, {
     include: {
-      model: Song,
-      as: "Artist"
+      model: Song
     }
   });
 
