@@ -5,6 +5,8 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Song, Album, Playlist } = require('../../db/models');
+const album = require('../../db/models/album');
+const song = require('../../db/models/song');
 
 const router = express.Router();
 
@@ -54,27 +56,54 @@ router.get('/:userId', async (req, res, next) => {
   //     userId
   //   }
   // })
+  // const user = await User.scope("artist").findByPk(userId, {
+  //   attributes: {
+  //     include: [
+  //       [Sequelize.fn("COUNT", Sequelize.col('Songs.id')),
+  //         "totalSongs"],
+  //       [Sequelize.fn("COUNT", Sequelize.col('Albums.id')),
+  //         "totalAlbums"]
+  //     ]
+  //   },
+  //   include: [{
+  //     model: Song,
+  //     attributes: ["previewImage"]
+  //   },
+  //   // Review Sequelize literal syntax
+  //   {
+  //     model: Album,
+  //     attributes: [],
+  //   }
+  //   ],
+  //   group: ["User.id", "Songs.id"]
+  // });
+
+
+
+  const albumCount = await Album.count({
+    where: {
+      userId
+    }
+  })
+
+  const songCount = await Song.count({
+    where: {
+      userId
+    }
+  })
+  // const countAlbums = await albumData.count()
+
   const user = await User.scope("artist").findByPk(userId, {
-    attributes: {
-      include: [
-        [Sequelize.fn("COUNT", Sequelize.col('Songs.id')),
-          "totalSongs"],
-        [Sequelize.fn("COUNT", Sequelize.col('Albums.id')),
-          "totalAlbums"]
-      ]
-    },
     include: [{
       model: Song,
-      attributes: ["previewImage"]
-    },
-    // Review Sequelize literal syntax
-    {
-      model: Album,
-      attributes: [],
-    }
-    ],
-    group: ["User.id", "Songs.id"]
-  });
+      attributes: ['previewImage']
+    }]
+  })
+
+  user.dataValues.totalSongs = songCount
+  user.dataValues.totalAlbums = albumCount
+
+
   if (!user) {
     const err = new Error('Not Found');
     err.status = 404;
