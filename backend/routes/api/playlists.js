@@ -16,12 +16,8 @@ const validatePlaylists = [
 
 router.get('/:playlistId', async (req, res, next) => {
   const { playlistId } = req.params;
-  const playlist = await Playlist.findByPk(playlistId,
-    {
-      include: {
-        model: Song
-      }
-    })
+  const playlist = await Playlist.findByPk(playlistId)
+  const playlistSongList = await playlist.getSongs()
 
   if (!playlist) {
     const err = new Error('Not Found');
@@ -31,7 +27,7 @@ router.get('/:playlistId', async (req, res, next) => {
     return res.json(err);
   }
 
-  return res.json(playlist)
+  return res.json(playlistSongList)
 })
 
 router.get('/current', requireAuth, async (req, res, next) => {
