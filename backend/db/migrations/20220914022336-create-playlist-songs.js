@@ -19,7 +19,12 @@ module.exports = {
       },
       playlistId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: "Playlists",
+          key: "id",
+          onDelete: 'CASCADE'
+        }
       },
       createdAt: {
         allowNull: false,
