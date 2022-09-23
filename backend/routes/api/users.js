@@ -129,6 +129,7 @@ router.get('/:userId/songs', async (req, res, next) => {
     err.status = 404;
     err.title = 'Not Found';
     err.errors = ['User does not exist!'];
+    res.status(404)
     return next(err);
   }
 

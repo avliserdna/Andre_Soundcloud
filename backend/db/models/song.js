@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         models.User,
         {
           foreignKey: 'userId',
-          onDelete: 'CASCADE'
+          onDelete: 'cascade'
         }
       )
 
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         models.Album,
         {
           foreignKey: 'albumId',
-          onDelete: 'CASCADE'
+          onDelete: 'cascade'
         }
       )
 
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         models.Comment,
         {
           foreignKey: 'songId',
-          onDelete: 'CASCADE'
+          onDelete: 'cascade'
         }
       )
 
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         {
           foreignKey: 'songId',
           through: models.PlaylistSongs,
-          onDelete: 'CASCADE'
+          onDelete: 'cascade'
         }
       )
     }
