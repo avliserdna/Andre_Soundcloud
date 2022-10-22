@@ -26,10 +26,10 @@ router.use('/comments', commentsRouter);
 router.use('/playlists', playlistsRouter);
 
 
-router.post('/test', function (req, res) {
-  res.json({ requestBody: req.body });
+// router.post('/test', function (req, res) {
+//   res.json({ requestBody: req.body });
 
-});
+// });
 
 router.get('/artists/:userId/albums', async (req, res, next) => {
   const { userId } = req.params;
