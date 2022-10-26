@@ -4,19 +4,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from "react-router-dom";
 
 function Discover() {
-  const { songId } = useParams();
   const dispatch = useDispatch();
   const song = useSelector((state) => {
-    return state.song.songs.map((songId) => state.song[songId])
+    return state.song
   })
 
   useEffect(() => {
     dispatch(getSongs())
-  })
-
-  if (!song) {
-    return null;
-  }
+  }, [])
+  return (
+    <div></div>
+  )
 }
 
 export default Discover;

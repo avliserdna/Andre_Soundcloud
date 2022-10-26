@@ -25,12 +25,14 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AudioPlayer from "./components/AudioPlayer";
 import Discover from "./components/Discover";
+import { getSongs } from "./store/songs"
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restore()).then(() => setIsLoaded(true));
+    dispatch(getSongs())
   }, [dispatch]);
 
   return (
@@ -38,7 +40,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Discover />
           </Route>
           <Route path="/login">
@@ -47,10 +49,11 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/songs/:songId">
+          <Route exact path="/songs/:songId">
             <AudioPlayer />
           </Route>
         </Switch>
+
       )}
     </>
   );

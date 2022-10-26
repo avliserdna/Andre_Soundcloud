@@ -30,20 +30,16 @@ export const getSongId = (songId) => async (dispatch) => {
 }
 
 const initialState = {
-  songs: []
 }
 
 export const songReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
-      const allSongs = {};
+      const allSongs = { ...state };
       action.songs.forEach((song) => {
         allSongs[song.id] = song;
       });
-      return {
-        ...allSongs,
-        ...state
-      }
+      return allSongs
 
     case ADD_ONE:
       if (!state[action.song.id]) {
