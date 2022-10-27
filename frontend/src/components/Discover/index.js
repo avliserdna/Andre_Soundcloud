@@ -5,15 +5,17 @@ import { useParams } from "react-router-dom";
 
 function Discover() {
   const dispatch = useDispatch();
-  const song = useSelector((state) => {
-    return state.song
-  })
-
-  useEffect(() => {
-    dispatch(getSongs())
-  }, [])
+  const songs = useSelector((state) => state.song)
+  console.log(songs)
   return (
-    <div></div>
+    <div>
+      <h1>Discover New Songs!</h1>
+      <div>
+        {/* {songs.map((song) => {
+          <h1>{song.title}</h1>
+        })} */}
+      </div>
+    </div>
   )
 }
 
