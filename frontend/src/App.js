@@ -26,6 +26,7 @@ import Navigation from "./components/Navigation";
 import AudioPlayer from "./components/AudioPlayer";
 import Discover from "./components/Discover";
 import { getSongs } from "./store/songs"
+import Upload from "./components/Upload";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +52,9 @@ function App() {
           </Route>
           <Route exact path="/songs/:songId">
             <AudioPlayer />
+          </Route>
+          <Route path="/upload">
+            <Upload />
           </Route>
         </Switch>
 

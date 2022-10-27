@@ -3,6 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import Upload from '../Upload';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -26,6 +27,7 @@ function Navigation({ isLoaded }) {
     <ul>
       <li>
         <NavLink exact to="/">Home</NavLink>
+        <NavLink to="/upload">Upload</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>
