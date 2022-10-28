@@ -4,11 +4,7 @@ import { useParams } from "react-router-dom"
 function AudioPlayer() {
   console.log("are you there")
   const { songId } = useParams()
-  // audio = new Audio()
-  // useEffect(() => {
-  //   audio.play()
-  // })
-  // const dispatch = useDispatch()
+
   const song = useSelector(state => state.song[songId])
   return (
     <div>
