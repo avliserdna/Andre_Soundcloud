@@ -7,15 +7,15 @@ const { handle } = require('express/lib/router/index.js');
 const { singlePublicFileUpload, multiplePublicFileUpload, multipleFileKeysUpload, multipleMulterUpload } = require('../../awsS3.js');
 const router = express.Router();
 
-const validateSong = [
-  check('title')
-    .exists({ checkFalsy: true })
-    .withMessage('Song title is required'),
-  check('url')
-    .exists({ checkFalsy: true })
-    .withMessage('Audio is required'),
-  handleValidationErrors
-];
+// const validateSong = [
+//   check('title')
+//     .exists({ checkFalsy: true })
+//     .withMessage('Song title is required'),
+//   check('url')
+//     .exists({ checkFalsy: true })
+//     .withMessage('Audio is required'),
+//   handleValidationErrors
+// ];
 
 const validateComments = [
   check('body')
@@ -175,9 +175,9 @@ router.get('/:songId', async (req, res, next) => {
   return res.json(song)
 })
 
-router.post('/', multipleMulterUpload([{ name: 'url', maxCount: 1 }, { name: 'previewImage', maxCount: 1 }]), validateSong,
+router.post('/', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { name: 'previewImage', maxCount: 1 }]),
   async (req, res, next) => {
-    const { userId, title, description, url, imageUrl, albumId } = req.body
+    const { userId, title, description, albumId } = req.body
 
     // console.log(req.body, "<=== REQUEST BODY")
     // console.log(req.user, "<== REQUEST USER")
@@ -193,6 +193,9 @@ router.post('/', multipleMulterUpload([{ name: 'url', maxCount: 1 }, { name: 'pr
     //   err.errors = ["Album couldn't be found"]
     //   return next(err);
     // }
+    console.log(req)
+    console.log(req.files, "<==REQUEST FILES")
+    console.log(req.file, "<==== REQUEST FILE (ONLY 1)")
     const previewImage = await singlePublicFileUpload(req.files.previewImage[0])
 
     const imgurl = await singlePublicFileUpload(req.files.url[0])
@@ -203,9 +206,7 @@ router.post('/', multipleMulterUpload([{ name: 'url', maxCount: 1 }, { name: 'pr
       err.errors = ['Not Authorized to add to album!']
       return next(err);
     }
-    console.log(previewImage)
-    console.log(req.files)
-    console.log(songurl)
+
     const newSong = await Song.create({
       albumId: null,
       userId: Number(userId),
@@ -219,7 +220,7 @@ router.post('/', multipleMulterUpload([{ name: 'url', maxCount: 1 }, { name: 'pr
   })
 
 
-router.put('/:songId', validateSong, async (req, res, next) => {
+router.put('/:songId', async (req, res, next) => {
   const { songId } = req.params;
   const song = await Song.findByPk(songId)
   const { title, description, url, imageUrl, albumId } = req.body
