@@ -2,11 +2,17 @@ import { csrfFetch } from "./csrf";
 
 const LOAD = "songs/LOAD"
 const ADD_ONE = "songs/ADD_ONE"
+const LOAD_COMMENTS = "songs/LOAD_COMMENTS"
 
 const load = (songs) => ({
   type: LOAD,
   songs
 });
+
+const loadComments = (comments) => ({
+  type: LOAD_COMMENTS,
+  comments
+})
 
 const addOneSong = (song) => ({
   type: ADD_ONE,
@@ -39,25 +45,20 @@ export const getSongId = (songId) => async (dispatch) => {
 export const addSong = (song) => async (dispatch) => {
   const { userId, albumId, title, description, url, previewImage } = song
 
-  // const formData = new FormData();
-  // formData.append("title", title);
-  // formData.append("description", description);
-  // formData.append("url", url)
-  // formData.append("previwImage", previewImage)
+  const formData = new FormData();
+  formData.append("userId", userId)
+  formData.append("albumId", albumId)
+  formData.append("title", title);
+  formData.append("description", description);
+  formData.append("url", url)
+  formData.append("previwImage", previewImage)
 
   const response = await csrfFetch(`/api/songs`, {
     method: "POST",
     headers: {
       "Content-Type": "multipart/form-data",
     },
-    body: {
-      userId,
-      albumId,
-      title,
-      description,
-      url,
-      previewImage
-    }
+    body: formData
   })
   console.log(song)
   const data = await response.json();
@@ -65,6 +66,14 @@ export const addSong = (song) => async (dispatch) => {
   return response;
 }
 const initialState = {
+}
+
+export const getSongComments = (songId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/songs/${songId}/comments`)
+  if (response.ok) {
+    const comments = await response.json();
+    dispatch(loadComments(comments))
+  }
 }
 
 export const songReducer = (state = initialState, action) => {
@@ -86,7 +95,10 @@ export const songReducer = (state = initialState, action) => {
         songList.push(action.song)
         return newState
       }
-
+    case LOAD_COMMENTS:
+      const allSongComments = { ...state };
+      const newState = { ...allSongComments, comments: action.comments }
+      return newState
 
     default:
       return state

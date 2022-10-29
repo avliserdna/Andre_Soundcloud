@@ -1,11 +1,20 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom"
+import { getSongComments } from "../../store/songs"
 
 function AudioPlayer() {
-  console.log("are you there")
+  const dispatch = useDispatch();
   const { songId } = useParams()
 
+
   const song = useSelector(state => state.song[songId])
+  const comments = useSelector(state => state.song.comments)
+  console.log(comments, "<=== comments")
+  useEffect(() => {
+    dispatch(getSongComments(songId))
+  }, [dispatch])
+
   return (
     <div>
       <figure>
@@ -20,6 +29,19 @@ function AudioPlayer() {
         </audio>
       </figure>
 
+      <div>
+        <h2>Comments</h2>
+        {comments?.map((comment) => {
+
+          return (
+            <div>
+              <body>{comment.body}</body>
+              <h4>{comment.User.username}</h4>
+            </div>
+
+          )
+        })}
+      </div>
     </div>
   )
 }

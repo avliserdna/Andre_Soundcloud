@@ -23,6 +23,7 @@ function Upload() {
     e.preventDefault();
     console.log(title, "<= TITLE")
     console.log(url, "<= URL")
+    console.log(previewImage, "<=== PREVIEW IMAGE")
     const payload = {
       userId,
       albumId,
