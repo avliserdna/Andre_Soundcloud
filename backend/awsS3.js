@@ -16,10 +16,15 @@ const s3 = new AWS.S3({
   apiVersion: "2006-03-01"
 });
 
+
+
 // --------------------------- Public UPLOAD ------------------------
 
+const multipleFileKeysUpload = (fieldArr) =>
+  multer({ storage: storage }).fields(fieldArr);
+
+
 const singlePublicFileUpload = async (file) => {
-  console.log(file.buffer)
   const { originalname, mimetype, buffer } = await file;
   const path = require("path");
   // name of the file in your S3 bucket will be the date in ms plus the extension name
@@ -103,4 +108,5 @@ module.exports = {
   retrievePrivateFile,
   singleMulterUpload,
   multipleMulterUpload,
+  multipleFileKeysUpload
 };
