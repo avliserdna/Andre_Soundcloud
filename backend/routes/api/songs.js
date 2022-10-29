@@ -4,6 +4,7 @@ const { User, Song, Album, Comment } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { handle } = require('express/lib/router/index.js');
+const { singleMulterUpload } = require('../../awsS3.js');
 const router = express.Router();
 
 const validateSong = [
@@ -174,26 +175,29 @@ router.get('/:songId', async (req, res, next) => {
   return res.json(song)
 })
 
-router.post('/', validateSong, async (req, res, next) => {
+router.post('/', singleMulterUpload("url"), async (req, res, next) => {
   const { title, description, url, imageUrl, albumId } = req.body
+  console.log(req.body, "<=== REQUEST BODY")
+  console.log(req.user, "<== REQUEST USER")
   const songAlbum = await Album.findByPk(albumId)
+  console.log(songAlbum, "<== album")
 
-  if (req.user.id !== songAlbum.userId) {
+
+  // if (!songAlbum) {
+  //   const err = new Error('Not Found');
+  //   err.status = 404;
+  //   err.title = 'Not Found';
+  //   err.errors = ["Album couldn't be found"]
+  //   return next(err);
+  // }
+
+  if (songAlbum && req.user.id !== songAlbum.userId) {
     const err = new Error('Forbidden');
     err.status = 403;
     err.title = 'Forbidden';
     err.errors = ['Not Authorized to add to album!']
     return next(err);
   }
-
-  if (!songAlbum) {
-    const err = new Error('Not Found');
-    err.status = 404;
-    err.title = 'Not Found';
-    err.errors = ["Album couldn't be found"]
-    return next(err);
-  }
-
   const newSong = await Song.create({
     albumId,
     userId: req.user.id,

@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
 // name of your bucket here
-const andresoundcloud = "aws-s3-pern-demo";
+const NAME_OF_BUCKET = "andresoundcloud";
 
 const multer = require("multer");
 
@@ -9,17 +9,23 @@ const multer = require("multer");
 //  AWS_SECRET_ACCESS_KEY
 //  and aws will automatically use those environment variables
 
-const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
+const accessKeyId = process.env.AWS_ACCESS_KEY_ID
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
+const s3 = new AWS.S3({
+  credentials: { accessKeyId, secretAccessKey },
+  apiVersion: "2006-03-01"
+});
 
 // --------------------------- Public UPLOAD ------------------------
 
 const singlePublicFileUpload = async (file) => {
+  console.log(file.buffer)
   const { originalname, mimetype, buffer } = await file;
   const path = require("path");
   // name of the file in your S3 bucket will be the date in ms plus the extension name
   const Key = new Date().getTime().toString() + path.extname(originalname);
   const uploadParams = {
-    Bucket: andresoundcloud,
+    Bucket: NAME_OF_BUCKET,
     Key,
     Body: buffer,
     ACL: "public-read",
@@ -46,7 +52,7 @@ const singlePrivateFileUpload = async (file) => {
   // name of the file in your S3 bucket will be the date in ms plus the extension name
   const Key = new Date().getTime().toString() + path.extname(originalname);
   const uploadParams = {
-    Bucket: andresoundcloud,
+    Bucket: NAME_OF_BUCKET,
     Key,
     Body: buffer,
   };
@@ -68,7 +74,7 @@ const retrievePrivateFile = (key) => {
   let fileUrl;
   if (key) {
     fileUrl = s3.getSignedUrl("getObject", {
-      Bucket: andresoundcloud,
+      Bucket: NAME_OF_BUCKET,
       Key: key,
     });
   }
