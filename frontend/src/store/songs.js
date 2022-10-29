@@ -38,20 +38,28 @@ export const getSongId = (songId) => async (dispatch) => {
 
 export const addSong = (song) => async (dispatch) => {
   const { userId, albumId, title, description, url, previewImage } = song
+
+  // const formData = new FormData();
+  // formData.append("title", title);
+  // formData.append("description", description);
+  // formData.append("url", url)
+  // formData.append("previwImage", previewImage)
+
   const response = await csrfFetch(`/api/songs`, {
     method: "POST",
     headers: {
       "Content-Type": "multipart/form-data",
     },
-    body: JSON.stringify({
+    body: {
       userId,
       albumId,
       title,
       description,
       url,
       previewImage
-    })
+    }
   })
+  console.log(song)
   const data = await response.json();
   dispatch(newSong(data.song))
   return response;
