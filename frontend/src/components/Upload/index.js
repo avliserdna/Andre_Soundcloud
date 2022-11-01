@@ -15,15 +15,17 @@ function Upload() {
   const [url, setUrl] = useState("");
   const [previewImage, setPreviewImage] = useState("")
 
-  // useEffect(() => {
+  const songUpdate = (e) => {
+    const file = e.target.files[0]
+    if (file) setUrl(file)
+  }
 
-  // })
-
+  const imageUpdate = (e) => {
+    const file = e.target.files[0]
+    if (file) setPreviewImage(file)
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(title, "<= TITLE")
-    console.log(url, "<= URL")
-    console.log(previewImage, "<=== PREVIEW IMAGE")
     const payload = {
       userId,
       albumId,
@@ -32,18 +34,11 @@ function Upload() {
       url,
       previewImage
     }
-    console.log(payload, "<=== Payload")
     const createdSong = await dispatch(addSong(payload))
-
     if (createdSong) {
       history.push('/');
     }
   }
-
-  // const handleCancelClick = (e) => {
-  //   e.preventDefault();
-  //   hideForm();
-  // };
 
   return (
     <section className="new-form">
@@ -57,12 +52,6 @@ function Upload() {
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        {/* <h2>Album:</h2>
-        <input
-          type="text"
-          value={album}
-          onChange={ } /> */}
-
         <h2>Description:</h2>
         <input
           type="text"
@@ -74,19 +63,14 @@ function Upload() {
         <input
           type="file"
           name="url"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)} />
+          onChange={songUpdate} />
 
         <h2>Song Image:</h2>
         <input
           type="file"
           name="previewImage"
-          value={previewImage}
-          onChange={(e) => setPreviewImage(e.target.value)} />
+          onChange={imageUpdate} />
         <button type="submit">Create New Song</button>
-        {/* <button type="button" onClick={handleCancelClick}>
-          Cancel
-        </button> */}
       </form>
     </section>
   )

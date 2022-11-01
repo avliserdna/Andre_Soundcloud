@@ -19,16 +19,17 @@ const addOneSong = (song) => ({
   song
 })
 
-const newSong = (song) => ({
+const newSong = (songs) => ({
   type: LOAD,
-  song
+  songs: [songs]
 })
 
 export const getSongs = () => async (dispatch) => {
   const response = await csrfFetch(`/api/songs`);
-
+  console.log(response)
   if (response.ok) {
     const songs = await response.json();
+    console.log(songs)
     dispatch(load(songs))
   }
 }
@@ -42,6 +43,10 @@ export const getSongId = (songId) => async (dispatch) => {
   }
 }
 
+export const addComment = (comment) => async (dispatch) => {
+  const { body } = comment;
+}
+
 export const addSong = (song) => async (dispatch) => {
   const { userId, albumId, title, description, url, previewImage } = song
 
@@ -51,7 +56,7 @@ export const addSong = (song) => async (dispatch) => {
   formData.append("title", title);
   formData.append("description", description);
   formData.append("url", url)
-  formData.append("previwImage", previewImage)
+  formData.append("previewImage", previewImage)
 
   const response = await csrfFetch(`/api/songs`, {
     method: "POST",
@@ -60,9 +65,10 @@ export const addSong = (song) => async (dispatch) => {
     },
     body: formData
   })
-  console.log(song)
   const data = await response.json();
-  dispatch(newSong(data.song))
+  console.log(data, "<=== DATA")
+  console.log(data.song, "<===== DATA.SONG")
+  dispatch(newSong(data))
   return response;
 }
 const initialState = {
