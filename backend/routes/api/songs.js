@@ -177,7 +177,7 @@ router.get('/:songId', async (req, res, next) => {
 
 router.post('/', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { name: 'previewImage', maxCount: 1 }]),
   async (req, res, next) => {
-    const { userId, title, description, albumId } = req.body
+    const { userId, title, description, url, previewImage, albumId } = req.body
 
     // console.log(req.body, "<=== REQUEST BODY")
     // console.log(req.user, "<== REQUEST USER")
@@ -196,9 +196,9 @@ router.post('/', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { name: '
     console.log(req)
     console.log(req.files, "<==REQUEST FILES")
     console.log(req.file, "<==== REQUEST FILE (ONLY 1)")
-    const previewImage = await singlePublicFileUpload(req.files.previewImage[0])
+    const imageUrl = await singlePublicFileUpload(req.files.previewImage[0])
 
-    const imgurl = await singlePublicFileUpload(req.files.url[0])
+    const songUrl = await singlePublicFileUpload(req.files.url[0])
     if (songAlbum && Number(userId) !== songAlbum.userId) {
       const err = new Error('Forbidden');
       err.status = 403;
@@ -212,8 +212,8 @@ router.post('/', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { name: '
       userId: Number(userId),
       title,
       description,
-      url,
-      previewImage: imgurl
+      url: songUrl,
+      previewImage: imageUrl
     })
 
     return res.json(newSong)
