@@ -35,8 +35,8 @@ function AudioPlayer() {
         {comments?.map((comment) => {
 
           return (
-            <div>
-              <body>{comment.body}</body>
+            <div key={comment.id}>
+              <p>{comment.body}</p>
               <h4>{comment.User.username}</h4>
             </div>
 

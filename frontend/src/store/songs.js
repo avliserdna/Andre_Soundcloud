@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const LOAD = "songs/LOAD"
 const ADD_ONE = "songs/ADD_ONE"
 const LOAD_COMMENTS = "songs/LOAD_COMMENTS"
+// const ADD_COMMENT = "songs/ADD_COMMENT"
 
 const load = (songs) => ({
   type: LOAD,
@@ -22,6 +23,11 @@ const addOneSong = (song) => ({
 const newSong = (songs) => ({
   type: LOAD,
   songs: [songs]
+})
+
+const addComments = (comment) => ({
+  type: LOAD_COMMENTS,
+  comment
 })
 
 export const getSongs = () => async (dispatch) => {
@@ -44,7 +50,25 @@ export const getSongId = (songId) => async (dispatch) => {
 }
 
 export const addComment = (comment) => async (dispatch) => {
-  const { body } = comment;
+  const { userId, songId, body } = comment;
+
+  // const formData = new FormData();
+  // formData.append("userId", userId)
+  // formData.append("songId", songId)
+  // formData.append("body", body)
+
+  const response = await csrfFetch(`/api/songs/${songId}/comments`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(comment)
+  })
+
+  const data = await response.json()
+  console.log(data, "<==== COMMENT DATA")
+  dispatch(addComments(data))
+  return response
 }
 
 export const addSong = (song) => async (dispatch) => {
