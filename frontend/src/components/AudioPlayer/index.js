@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { getSongComments } from "../../store/songs"
+import CommentForm from "../CommentForm";
 
 function AudioPlayer() {
   const dispatch = useDispatch();
@@ -41,7 +42,9 @@ function AudioPlayer() {
 
           )
         })}
+
       </div>
+      <CommentForm />
     </div>
   )
 }
