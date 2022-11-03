@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const LOAD = "songs/LOAD"
 const ADD_ONE = "songs/ADD_ONE"
 const LOAD_COMMENTS = "songs/LOAD_COMMENTS"
+const UPDATE_SONG = "songs/UPDATE_SONG"
 // const ADD_COMMENT = "songs/ADD_COMMENT"
 
 const load = (songs) => ({
@@ -28,6 +29,11 @@ const newSong = (songs) => ({
 const addComments = (comment) => ({
   type: LOAD_COMMENTS,
   comment
+})
+
+const updateSong = (song) => ({
+  type: LOAD_COMMENTS,
+  song
 })
 
 export const getSongs = () => async (dispatch) => {
@@ -90,12 +96,33 @@ export const addSong = (song) => async (dispatch) => {
     body: formData
   })
   const data = await response.json();
-  console.log(data, "<=== DATA")
-  console.log(data.song, "<===== DATA.SONG")
   dispatch(newSong(data))
   return response;
 }
 const initialState = {
+}
+
+export const updateSongs = (song) => async (dispatch) => {
+  const { userId, albumId, title, description, url, previewImage } = song
+
+  const formData = new FormData();
+  formData.append("userId", userId)
+  formData.append("albumId", albumId)
+  formData.append("title", title);
+  formData.append("description", description);
+  formData.append("url", url)
+  formData.append("previewImage", previewImage)
+
+  const response = await csrfFetch(`/api/songs`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData
+  })
+  const data = await response.json();
+  dispatch(updateSong(data))
+  return response;
 }
 
 export const getSongComments = (songId) => async (dispatch) => {

@@ -1,14 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useParams, NavLink } from "react-router-dom"
 import { getSongComments } from "../../store/songs"
 import CommentForm from "../CommentForm";
+import EditSong from "../EditSong";
+
 
 function AudioPlayer() {
   const dispatch = useDispatch();
   const { songId } = useParams()
-
-
+  const sessionUser = useSelector(state => state.session.user);
+  const [editId, setEditId] = useState(null)
+  const [EditForm, setEditForm] = useState(false)
   const song = useSelector(state => state.song[songId])
   const comments = useSelector(state => state.song.comments)
   console.log(comments, "<=== comments")
@@ -19,7 +22,6 @@ function AudioPlayer() {
   return (
     <div>
       <figure>
-
         <figcaption>{song?.title}</figcaption>
         <audio
           controls
@@ -29,11 +31,10 @@ function AudioPlayer() {
           </a>
         </audio>
       </figure>
-
+      {sessionUser ? (<button onClick={() => setEditForm(true)} />) : null}
       <div>
         <h2>Comments</h2>
         {comments?.map((comment) => {
-
           return (
             <div key={comment.id}>
               <p>{comment.body}</p>

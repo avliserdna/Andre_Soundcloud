@@ -27,6 +27,7 @@ import AudioPlayer from "./components/AudioPlayer";
 import Discover from "./components/Discover";
 import { getSongs } from "./store/songs"
 import Upload from "./components/Upload";
+import EditSong from "./components/EditSong";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +56,9 @@ function App() {
           </Route>
           <Route path="/upload">
             <Upload />
+          </Route>
+          <Route exact path="/songs/:songId/edit">
+            <EditSong />
           </Route>
         </Switch>
 
