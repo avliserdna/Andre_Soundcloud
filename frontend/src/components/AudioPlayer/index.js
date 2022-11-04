@@ -31,7 +31,7 @@ function AudioPlayer() {
           </a>
         </audio>
       </figure>
-      {sessionUser ? (<button onClick={() => setEditForm(true)} />) : null}
+      {sessionUser.id === song.userId ? (<NavLink exact to={`/songs/${song?.id}/edit`}><button>Edit Song</button></NavLink>) : null}
       <div>
         <h2>Comments</h2>
         {comments?.map((comment) => {

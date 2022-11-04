@@ -1,38 +1,42 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { updateSongs } from "../../store/songs"
+import { getSongs, updateSongs } from "../../store/songs"
+// import { getSongId } from "../../store/songs"
 
 
 function EditSong() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const songId = useParams()
-  console.log(songId)
+  const { songId } = useParams()
   const user = useSelector((state) => state.session.user)
   const album = useSelector((state) => state.album)
   const song = useSelector((state) => state.song[songId])
-  const [userId, setUserId] = useState(user.id);
-  const [albumId, setAlbumId] = useState(null);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [url, setUrl] = useState("");
-  const [previewImage, setPreviewImage] = useState("")
+  const [userId, setUserId] = useState(song?.userId);
+  const [albumId, setAlbumId] = useState(song?.albumId);
+  const [title, setTitle] = useState(song?.title);
+  const [description, setDescription] = useState(song?.description);
+  const [url, setUrl] = useState(song?.url);
+  const [previewImage, setPreviewImage] = useState(song?.previewImage)
 
-  console.log(song?.id)
+  console.log(song)
+
+  useEffect(() => {
+    dispatch(getSongs())
+  }, [dispatch])
+
   const songUpdate = (e) => {
     const file = e.target.files[0]
     if (file) setUrl(file)
   }
-
   const imageUpdate = (e) => {
     const file = e.target.files[0]
     if (file) setPreviewImage(file)
   }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
+      id: songId,
       userId,
       albumId,
       title,
@@ -42,13 +46,13 @@ function EditSong() {
     }
     const updatedSong = await dispatch(updateSongs(payload))
     if (updatedSong) {
-      history.push('/');
+      history.push('/')
     }
   }
   return (
     <section className="new-form">
       <form className="upload-new-song" onSubmit={handleSubmit}>
-        <h1>New Song</h1>
+        <h1>Edit Song</h1>
         <h2>Song Title:</h2>
         <input
           type="text"
@@ -62,7 +66,6 @@ function EditSong() {
           type="text"
           name="description"
           value={description}
-          placeholder="aaa"
           onChange={(e) => setDescription(e.target.value)} />
 
         <h2>Song Upload:</h2>
@@ -76,7 +79,7 @@ function EditSong() {
           type="file"
           name="previewImage"
           onChange={imageUpdate} />
-        <button type="submit">Create New Song</button>
+        <button type="submit">Update Song</button>
       </form>
     </section>
   )

@@ -112,8 +112,8 @@ export const updateSongs = (song) => async (dispatch) => {
   formData.append("description", description);
   formData.append("url", url)
   formData.append("previewImage", previewImage)
-
-  const response = await csrfFetch(`/api/songs`, {
+  console.log(song)
+  const response = await csrfFetch(`/api/songs/${song.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "multipart/form-data",

@@ -53,6 +53,7 @@ function App() {
           </Route>
           <Route exact path="/songs/:songId">
             <AudioPlayer />
+
           </Route>
           <Route path="/upload">
             <Upload />
