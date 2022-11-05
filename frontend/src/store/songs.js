@@ -2,20 +2,16 @@ import { csrfFetch } from "./csrf";
 
 const LOAD = "songs/LOAD"
 const ADD_ONE = "songs/ADD_ONE"
-const LOAD_COMMENTS = "songs/LOAD_COMMENTS"
-const DELETE_COMMENT = "songs/DELETE_COMMENT"
+// const LOAD_COMMENTS = "songs/LOAD_COMMENTS"
+// const DELETE_COMMENT = "songs/DELETE_COMMENT"
 const DELETE_SONG = "songs/DELETE_SONG"
+const UPDATE_SONG = "songs/UPDATE_SONG"
 // const ADD_COMMENT = "songs/ADD_COMMENT"
 
 const load = (songs) => ({
   type: LOAD,
   songs
 });
-
-const loadComments = (comments) => ({
-  type: LOAD_COMMENTS,
-  comments
-})
 
 const addOneSong = (song) => ({
   type: ADD_ONE,
@@ -27,25 +23,18 @@ const newSong = (songs) => ({
   songs: [songs]
 })
 
-const addComments = (comment) => ({
-  type: LOAD_COMMENTS,
-  comment
-})
 
 const updateSong = (song) => ({
-  type: LOAD_COMMENTS,
+  type: UPDATE_SONG,
   song
 })
 
-const deleteSong = (song) => ({
+const deleteSong = (songId) => ({
   type: DELETE_SONG,
-  song
+  songId
 })
 
-const deleteComment = (comment) => ({
-  type: DELETE_COMMENT,
-  comment
-})
+
 export const getSongs = () => async (dispatch) => {
   const response = await csrfFetch(`/api/songs`);
   console.log(response)
@@ -65,27 +54,7 @@ export const getSongId = (songId) => async (dispatch) => {
   }
 }
 
-export const addComment = (comment) => async (dispatch) => {
-  const { userId, songId, body } = comment;
 
-  // const formData = new FormData();
-  // formData.append("userId", userId)
-  // formData.append("songId", songId)
-  // formData.append("body", body)
-
-  const response = await csrfFetch(`/api/songs/${songId}/comments`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(comment)
-  })
-
-  const data = await response.json()
-  console.log(data, "<==== COMMENT DATA")
-  dispatch(addComments(data))
-  return response
-}
 
 export const addSong = (song) => async (dispatch) => {
   const { userId, albumId, title, description, url, previewImage } = song
@@ -136,40 +105,25 @@ export const updateSongs = (song) => async (dispatch) => {
   return response;
 }
 
-export const getSongComments = (songId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/songs/${songId}/comments`)
-  if (response.ok) {
-    const comments = await response.json();
-    dispatch(loadComments(comments))
-  }
-}
+
 
 export const removeSong = (song) => async (dispatch) => {
   console.log(song)
   const response = await csrfFetch(`/api/songs/${song.id}`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
+    // headers: {
+    //   "Content-Type": "multipart/form-data",
+    // },
   })
-  if (response.ok) {
-    const deletedData = await response.json();
-    dispatch(deleteSong(deletedData))
-  }
+  const deletedData = await response.json();
+  dispatch(deleteSong(song.id))
+  // if (response.ok) {
+  //   const deletedData = await response.json();
+  //   dispatch(deleteSong(deletedData))
+  // }
 }
 
-export const removeComment = (comment) => async (dispatch) => {
-  const response = await csrfFetch(`/api/comments/${comment.id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  })
-  if (response.ok) {
-    const deletedData = await response.json();
-    dispatch(deleteComment(deletedData))
-  }
-}
+
 export const songReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
@@ -191,18 +145,14 @@ export const songReducer = (state = initialState, action) => {
       }
     case DELETE_SONG:
       const deletedState = { ...state }
-      delete deletedState[action.song.id]
+      console.log(action.song, "<=== Action song")
+      delete deletedState[action.songId]
       return deletedState
 
-    case DELETE_COMMENT:
-      const deletedCommentState = { ...state }
-      delete deletedCommentState[action.comment.id]
-      return deletedCommentState
-
-    case LOAD_COMMENTS:
-      const allSongComments = { ...state };
-      const newState = { ...allSongComments, comments: action.comments }
-      return newState
+    case UPDATE_SONG:
+      const updatedState = { ...state }
+      updatedState[action.song.id] = action.song
+      return updatedState
 
     default:
       return state

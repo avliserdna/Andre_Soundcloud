@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { addComment } from "../../store/songs";
+import { addComment } from "../../store/comment";
 
 function NewComment({ user }) {
   const dispatch = useDispatch()

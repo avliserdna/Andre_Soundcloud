@@ -8,7 +8,9 @@ function Discover() {
   const songs = useSelector((state) => {
     return Object.values(state.song)
   })
-  console.log(songs)
+  useEffect(() => {
+    dispatch(getSongs())
+  }, [dispatch])
   return (
     <div id="discover-body">
       <h1>Discover New Songs!</h1>

@@ -20,7 +20,7 @@ function EditSong() {
   const [url, setUrl] = useState(song?.url);
   const [previewImage, setPreviewImage] = useState(song?.previewImage)
 
-  if (user.id !== song.userId) {
+  if (user?.id !== song?.userId) {
     alert("Not authorized to edit song!")
     history.push('/')
   }

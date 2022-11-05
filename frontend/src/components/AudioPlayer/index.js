@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams, NavLink, useHistory } from "react-router-dom"
-import { getSongComments } from "../../store/songs"
+import { getSongComments } from "../../store/comment"
 import CommentForm from "../CommentForm";
 import EditSong from "../EditSong";
 import { removeSong } from "../../store/songs";
-import { removeComment } from "../../store/songs"
+import { removeComment } from "../../store/comment"
 
 
 function AudioPlayer() {
@@ -15,7 +15,8 @@ function AudioPlayer() {
   const sessionUser = useSelector(state => state.session.user);
   const [deletedComment, setDeleteComment] = useState(null)
   const song = useSelector(state => state.song[songId])
-  const comments = useSelector(state => state.song.comments)
+  const allComments = useSelector(state => state.comment)
+  const comments = Object.values(allComments)
   console.log(comments, "<=== comments")
   useEffect(() => {
     dispatch(getSongComments(songId))
@@ -23,6 +24,7 @@ function AudioPlayer() {
 
   const deleteSong = (e) => {
     e.preventDefault();
+    console.log(song)
     dispatch(removeSong(song))
     alert("Song successfully removed!")
     history.push('/')
