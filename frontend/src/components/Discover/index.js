@@ -17,6 +17,7 @@ function Discover() {
         if (song) {
           return (
             <div id="discover-song" key={song.id}>
+              <img src={song.previewImage} />
               <NavLink to={`/songs/${song.id}`}>{song?.title}</NavLink>
             </div>
           )
