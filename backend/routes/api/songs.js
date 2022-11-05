@@ -5,6 +5,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { handle } = require('express/lib/router/index.js');
 const { singlePublicFileUpload, multiplePublicFileUpload, multipleFileKeysUpload, multipleMulterUpload } = require('../../awsS3.js');
+const { json } = require('sequelize');
 const router = express.Router();
 
 // const validateSong = [
@@ -215,15 +216,16 @@ router.post('/', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { name: '
       url: songUrl,
       previewImage: imageUrl
     })
-
+    console.log(newSong)
     return res.json(newSong)
   })
 
 
-router.put('/:songId', async (req, res, next) => {
+router.put('/:songId', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { name: 'previewImage', maxCount: 1 }]), async (req, res, next) => {
   const { songId } = req.params;
   const song = await Song.findByPk(songId)
   const { title, description, url, imageUrl, albumId } = req.body
+  console.log(song, "<=== song")
   if (!song) {
     const err = new Error('Not Found');
     err.status = 404;
@@ -231,7 +233,11 @@ router.put('/:songId', async (req, res, next) => {
     err.errors = ['Song does not exist!'];
     return next(err);
   }
+  console.log(req.body, "<=== request body")
 
+  imageUrl = await singlePublicFileUpload(req.files.previewImage[0])
+
+  const songUrl = await singlePublicFileUpload(req.files.url[0])
   if (req.user.id !== song.userId) {
     const err = new Error('Forbidden');
     err.status = 403;
@@ -241,11 +247,11 @@ router.put('/:songId', async (req, res, next) => {
   }
 
   await song.update({
-    albumId,
+    albumId: JSON.parse(albumId),
     userId: req.user.id,
     title,
     description,
-    url,
+    url: songUrl,
     previewImage: imageUrl
   })
 
@@ -297,7 +303,8 @@ router.get('/:songId/comments', async (req, res, next) => {
 })
 
 router.post('/:songId/comments', validateComments, async (req, res, next) => {
-  const { songId } = req.params;
+  const { userId, songId, body } = req.body;
+  console.log(req.body)
   const song = await Song.findByPk(songId)
   if (!song) {
     const err = new Error('Not Found');
@@ -308,8 +315,8 @@ router.post('/:songId/comments', validateComments, async (req, res, next) => {
   }
 
   const newComment = await song.createComment({
-    body: req.body.body,
-    userId: req.user.id
+    body,
+    userId
   })
   return res.json(newComment)
 })

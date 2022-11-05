@@ -112,7 +112,7 @@ export const updateSongs = (song) => async (dispatch) => {
   formData.append("description", description);
   formData.append("url", url)
   formData.append("previewImage", previewImage)
-  console.log(song)
+  console.log(song, "<=== song update action")
   const response = await csrfFetch(`/api/songs/${song.id}`, {
     method: "PUT",
     headers: {
@@ -121,6 +121,7 @@ export const updateSongs = (song) => async (dispatch) => {
     body: formData
   })
   const data = await response.json();
+  console.log(data, "<=== edit data")
   dispatch(updateSong(data))
   return response;
 }

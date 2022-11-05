@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
+import { compose } from "redux";
 import { getSongs, updateSongs } from "../../store/songs"
 // import { getSongId } from "../../store/songs"
 
@@ -44,6 +45,7 @@ function EditSong() {
       url,
       previewImage
     }
+    console.log(payload, "<=== edit payload")
     const updatedSong = await dispatch(updateSongs(payload))
     if (updatedSong) {
       history.push('/')
