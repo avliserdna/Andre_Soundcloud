@@ -3,7 +3,8 @@ import { csrfFetch } from "./csrf";
 const LOAD = "songs/LOAD"
 const ADD_ONE = "songs/ADD_ONE"
 const LOAD_COMMENTS = "songs/LOAD_COMMENTS"
-const UPDATE_SONG = "songs/UPDATE_SONG"
+const DELETE_COMMENT = "songs/DELETE_COMMENT"
+const DELETE_SONG = "songs/DELETE_SONG"
 // const ADD_COMMENT = "songs/ADD_COMMENT"
 
 const load = (songs) => ({
@@ -36,6 +37,15 @@ const updateSong = (song) => ({
   song
 })
 
+const deleteSong = (song) => ({
+  type: DELETE_SONG,
+  song
+})
+
+const deleteComment = (comment) => ({
+  type: DELETE_COMMENT,
+  comment
+})
 export const getSongs = () => async (dispatch) => {
   const response = await csrfFetch(`/api/songs`);
   console.log(response)
@@ -134,6 +144,32 @@ export const getSongComments = (songId) => async (dispatch) => {
   }
 }
 
+export const removeSong = (song) => async (dispatch) => {
+  console.log(song)
+  const response = await csrfFetch(`/api/songs/${song.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  })
+  if (response.ok) {
+    const deletedData = await response.json();
+    dispatch(deleteSong(deletedData))
+  }
+}
+
+export const removeComment = (comment) => async (dispatch) => {
+  const response = await csrfFetch(`/api/comments/${comment.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  })
+  if (response.ok) {
+    const deletedData = await response.json();
+    dispatch(deleteComment(deletedData))
+  }
+}
 export const songReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
@@ -153,6 +189,16 @@ export const songReducer = (state = initialState, action) => {
         songList.push(action.song)
         return newState
       }
+    case DELETE_SONG:
+      const deletedState = { ...state }
+      delete deletedState[action.song.id]
+      return deletedState
+
+    case DELETE_COMMENT:
+      const deletedCommentState = { ...state }
+      delete deletedCommentState[action.comment.id]
+      return deletedCommentState
+
     case LOAD_COMMENTS:
       const allSongComments = { ...state };
       const newState = { ...allSongComments, comments: action.comments }

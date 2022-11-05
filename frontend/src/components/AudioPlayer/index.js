@@ -1,17 +1,19 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { useParams, NavLink } from "react-router-dom"
+import { useParams, NavLink, useHistory } from "react-router-dom"
 import { getSongComments } from "../../store/songs"
 import CommentForm from "../CommentForm";
 import EditSong from "../EditSong";
+import { removeSong } from "../../store/songs";
+import { removeComment } from "../../store/songs"
 
 
 function AudioPlayer() {
+  const history = useHistory()
   const dispatch = useDispatch();
   const { songId } = useParams()
   const sessionUser = useSelector(state => state.session.user);
-  const [editId, setEditId] = useState(null)
-  const [EditForm, setEditForm] = useState(false)
+  const [deletedComment, setDeleteComment] = useState(null)
   const song = useSelector(state => state.song[songId])
   const comments = useSelector(state => state.song.comments)
   console.log(comments, "<=== comments")
@@ -19,6 +21,21 @@ function AudioPlayer() {
     dispatch(getSongComments(songId))
   }, [dispatch])
 
+  const deleteSong = (e) => {
+    e.preventDefault();
+    dispatch(removeSong(song))
+    alert("Song successfully removed!")
+    history.push('/')
+  }
+
+  const deleteComment = (e, comment) => {
+    console.log(e)
+    console.log(comment)
+    e.preventDefault();
+    dispatch(removeComment(comment))
+    alert("Comment successfully removed!")
+    history.push(`/songs/${songId}`)
+  }
   return (
     <div>
       <figure>
@@ -26,12 +43,13 @@ function AudioPlayer() {
         <audio
           controls
           src={song?.url}>
-          <a href="https://andresoundcloud.s3.us-west-1.amazonaws.com/just+friends.mp3">
+          <a href={song?.url}>
             Download audio
           </a>
         </audio>
       </figure>
       {sessionUser.id === song.userId ? (<NavLink exact to={`/songs/${song?.id}/edit`}><button>Edit Song</button></NavLink>) : null}
+      {sessionUser.id === song.userId ? (<button onClick={(deleteSong)}>Delete Song</button>) : null}
       <div>
         <h2>Comments</h2>
         {comments?.map((comment) => {
@@ -39,8 +57,8 @@ function AudioPlayer() {
             <div key={comment.id}>
               <p>{comment.body}</p>
               <h4>{comment.User.username}</h4>
+              {sessionUser.id === comment.userId ? (<button onClick={(e) => deleteComment(e, comment)}>Delete Comment</button>) : null}
             </div>
-
           )
         })}
 
