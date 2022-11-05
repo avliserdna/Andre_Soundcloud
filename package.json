@@ -4,6 +4,9 @@
   },
   "name": "andre_soundcloud",
   "description": "## Database Schema",
+  "engines": {
+    "node": "16.18.0"
+  },
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {},
