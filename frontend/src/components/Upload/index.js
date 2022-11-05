@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { NavLink, useHistory } from "react-router-dom"
 import { addSong } from "../../store/songs"
 
 function Upload() {
@@ -8,7 +8,7 @@ function Upload() {
   const history = useHistory();
   const user = useSelector((state) => state.session.user)
   const album = useSelector((state) => state.album)
-  const [userId, setUserId] = useState(user.id);
+  const [userId, setUserId] = useState(user?.id);
   const [albumId, setAlbumId] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -38,6 +38,11 @@ function Upload() {
     if (createdSong) {
       history.push('/');
     }
+  }
+
+  if (!user) {
+    alert("No logged in user! Please sign up or login.")
+    history.push('/')
   }
 
   return (

@@ -20,7 +20,10 @@ function EditSong() {
   const [url, setUrl] = useState(song?.url);
   const [previewImage, setPreviewImage] = useState(song?.previewImage)
 
-  console.log(song)
+  if (user.id !== song.userId) {
+    alert("Not authorized to edit song!")
+    history.push('/')
+  }
 
   useEffect(() => {
     dispatch(getSongs())

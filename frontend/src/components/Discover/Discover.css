@@ -2,8 +2,12 @@
   display: flex;
   justify-content: space-around;
   border: solid;
+  width: 750px
 }
 
+#discover-body {
+  display: flexbox;
+}
 
 img {
   border: 1px solid #ddd;

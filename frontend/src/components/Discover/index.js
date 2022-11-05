@@ -10,7 +10,7 @@ function Discover() {
   })
   console.log(songs)
   return (
-    <div>
+    <div id="discover-body">
       <h1>Discover New Songs!</h1>
 
       {songs?.map((song) => {
