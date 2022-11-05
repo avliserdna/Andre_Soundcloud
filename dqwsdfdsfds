@@ -1,0 +1,463 @@
+[33mcommit 280f5470d14520b6a53b9a36a1d9481cc36fbac1[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/UpdateDelete[m[33m, [m[1;32mUpdateDelete[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Nov 5 09:02:12 2022 -0700
+
+    Created Edit.
+
+[33mcommit 973bc631c6278b88509c28cf19076c46739f6b8d[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Thu Nov 3 20:47:10 2022 -0700
+
+    Added update module. Still has a few bugs, but it works partially.
+
+[33mcommit e7adda792ebaf3c986435da1bce65545bbd947bb[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Nov 2 23:54:09 2022 -0700
+
+    Started Edit Module. Needs to add text. Needs to test Thunk. Can only see Edit Module IF logged in user. Needs to add more parameters if user MADE song.
+
+[33mcommit ce7e09d91e646ab23fd1c75f3cb1110c1ecd53b8[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Nov 1 21:51:52 2022 -0700
+
+    Added working post functionality for comments. Needs revisiting to allow re-rendering after post method.
+
+[33mcommit c79cdcc624e231fde0d7eab40c946290b09d4755[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Nov 1 20:35:14 2022 -0700
+
+    Successfully Rendered comment form, and ensured only logged in users can make comments.
+
+[33mcommit 6033a090bab6113c01da9bf17cd3a43827ec7abb[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Nov 1 20:28:57 2022 -0700
+
+    Fixed comment component for posting. Needs tto be implemented.'
+
+[33mcommit 9c05fe3936b3e0141b52cfdd3b3ca56c3133b444[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Mon Oct 31 21:48:27 2022 -0700
+
+    Updated components, and planning for comments.
+
+[33mcommit 2095279b0f814f5f75b3c30c84611adb4d546a11[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Mon Oct 31 20:32:56 2022 -0700
+
+    Audio Player works. Post Song works now too. Needs Put
+
+[33mcommit f3d14b648f954d3813a9307a0611808ee7caae5d[m[33m ([m[1;31morigin/AudiPlayer[m[33m, [m[1;32mAudiPlayer[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Oct 29 15:36:00 2022 -0700
+
+    Did some more console.logs for testing purposes.
+
+[33mcommit 33bc9d7bef99fd8104751d6276a133cc48361c43[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Oct 29 15:02:58 2022 -0700
+
+    Fixed reducer and some other components. Added a GET for comments under reducer. Can view comments + Username so far. View and CSS Needs to be added.
+
+[33mcommit c4db987d13f62063db311698b559be6c1e14bf3a[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Oct 29 15:02:22 2022 -0700
+
+    Made a few changes to back end for AWS Bucket functionality. Posts CAN go through under certain conditions. Needs review, because Bucket is NOT receiving uploads.
+
+[33mcommit 00b1ec2bf66f3472a1cc1b323aa06fe12f4108b2[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Oct 29 11:26:24 2022 -0700
+
+    Made some changes to components and songReducer to get AWS to work. No success. Pushing code for review.
+
+[33mcommit 963335bb4171a878f90ac9a957ad728514f8bcac[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Oct 29 11:25:21 2022 -0700
+
+    Tried a few fixes for AWS to work with buckets. No success. Pushing code for review.
+
+[33mcommit fcf59c63fdddb8cf55eae633ed00fc9fde33964c[m[33m ([m[1;32mNo_AWS[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Thu Oct 27 20:18:20 2022 -0700
+
+    Fixed upload component. Added album reducer. Need to add content to Album reducer.
+
+[33mcommit 33106fb7b99ebeeadb3ac16e4bf71ffa8ef7b4de[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Oct 26 21:58:49 2022 -0700
+
+    Successfully Rendered Song Titles from State on /discover. Added Placeholders to /upload component.
+
+[33mcommit ae01740598544150d6806102bbd3f732f69ee0a5[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Oct 26 21:12:43 2022 -0700
+
+    Made audio player dynamic. Added content to Discover component. Needs to be reviewed. Made a Upload component, need to import action on Upload. Made changes to allow upload to AWS Bucket, along with object URL access. Fixed CSRF Fetch, and added CSRF fetch on specific reducer actions.
+
+[33mcommit b401bef8bd34bd2e810b50522dc2c8a5a03496e9[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Oct 25 22:21:04 2022 -0700
+
+    Got Audio player to work. Need to work on dynamic Audio.
+
+[33mcommit 8ffd7c36e988a88664466051840da2d04b9fea24[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Oct 25 22:20:39 2022 -0700
+
+    Added AWS tokens. Need to finish, to add user functionality.
+
+[33mcommit b5731cb7b1ce1a3e2efb22513f92af58d0f9f277[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Mon Oct 24 20:54:41 2022 -0700
+
+    Started Song Reducer, added Discover, and Audio Player component. All needs functionality fixed, and edits.
+
+[33mcommit 7ec72e95abde324b75488b133c442d69b609f75e[m[33m ([m[1;32maudioPlayer[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Mon Oct 24 19:25:30 2022 -0700
+
+    Added First Name and Last Name to sign up form.
+
+[33mcommit dc70820b648602160dcd42ba4053443647377aea[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Oct 22 13:32:31 2022 -0700
+
+    Fixed node scripts for front end and back end. Preparation for deployment.
+
+[33mcommit 72cfd90c5949741d45770db7d8abe1e49302b289[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Oct 22 13:27:28 2022 -0700
+
+    Finished authenticate me phase 3 and created a functional rendered skeleton.
+
+[33mcommit ea06df56b5ad498754eb872b2a08a16a021c7f68[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Thu Oct 20 21:41:57 2022 -0700
+
+    Addeded Sign  up and Log out
+
+[33mcommit 1a728e95112f0aa472ee67b77360110df401102c[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Oct 19 21:37:28 2022 -0700
+
+    Set up login on Front end
+
+[33mcommit 95f1f9a400a890344f42c11a7f139cc696ab2b1b[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Oct 19 19:47:06 2022 -0700
+
+    finished phase-0
+
+[33mcommit 4e29a7132ddd148b665e9f567f6d9c33b791cf1e[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Oct 19 09:37:40 2022 -0700
+
+    Authenticate Me: Phase 0 Front End done.
+
+[33mcommit 1012cd1d26dc634483374db72f5cf8dfaa2ad8ad[m[33m ([m[1;31morigin/last-routes[m[33m, [m[1;31mheroku/main[m[33m, [m[1;32mlast-routes[m[33m, [m[1;32mdev[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Thu Sep 22 21:50:29 2022 -0700
+
+    Fixed Error handlers for GET, PUT, POST playlist routes. Fixed Models to onDelete Cascade properly, and fixed GET /users/:userID/songs to return a 404.
+
+[33mcommit f7939e5da61cc2d756fdae0b2bc1ac7d67772ebc[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 20:38:51 2022 -0700
+
+    Fixed GET playlists/:playlistId and GET /users/:userId
+
+[33mcommit 9f321fe6b9df6e9735a6f95f0788ead1cfe6df87[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 19:59:29 2022 -0700
+
+    Added foreignKeys to Playlist and Song associations.
+
+[33mcommit f2b286b6789a3f56d49aacfe1253161d09f65eba[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 19:55:29 2022 -0700
+
+    Revised GET /users/:userId to use getSongs() method.
+
+[33mcommit 5ded1b6d8ae983d804f850118b1681494c283231[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 19:42:10 2022 -0700
+
+    Added a reference to the PlaylistSongs migration for playlistId
+
+[33mcommit 0130a04984c9ff81d4f1e119113dc523b3026266[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 13:29:31 2022 -0700
+
+    Added GROUP BY for GET /users/:userId to get all song images
+
+[33mcommit 05cfa8eeb11a5c0afe7d56b1ad8a89f2c80187c4[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 13:27:38 2022 -0700
+
+    Added 'previewImage' for Song attributes in GET /users/:userId
+
+[33mcommit bad540ba73c075a0749065f94c89a51f6ceaa848[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 13:24:53 2022 -0700
+
+    Added a GROUP BY for User.id in GET /users/:userId
+
+[33mcommit 409b86911606da3d62999dbf281c3595d4ce749c[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 13:23:09 2022 -0700
+
+    Remade GET /users/:userId as attributes attached to the get, rather than eager loading with the model
+
+[33mcommit f501c845ad2a496d1b4db17d6a591c7b249b14fe[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 13:17:28 2022 -0700
+
+    Fixed a typo on User for GET /users/:userId
+
+[33mcommit 7a760c6e0a6b94cef50bd3ba211b3703cae7a40f[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 13:15:24 2022 -0700
+
+    Slight syntax error, wrong models being passed.
+
+[33mcommit c731e6b2320eb78fa1ad1f82badf03ec92ed9f1c[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 13:12:39 2022 -0700
+
+    Fixed group by for GET /users/:userId
+
+[33mcommit ef9a3e67d13477826bf063fa1a6fd85cc6cdf4da[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 12:58:45 2022 -0700
+
+    Edited GET /playlists/:playlistId. Hopefully will work on live, but route works perfectly on localhost.
+
+[33mcommit 9857416804cdd32755865fbd001c3eac50a33c5a[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 21 08:29:24 2022 -0700
+
+    Added GROUP for User.id on GET users/:userId
+
+[33mcommit d714d393f862d3e78be59c79d930241931b0d6a1[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Sep 20 22:26:04 2022 -0700
+
+    Fixed PlaylistSongs and GET /:playlistId. Added GET /albums/current.
+
+[33mcommit fd11a6e0f095f8464a97b9b879fc788db18d5803[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Sep 20 21:51:39 2022 -0700
+
+    Fixed GET /songs to return proper data
+
+[33mcommit 315745e57d8e491361df027aeeafc750a02fa1fa[m[33m ([m[1;31morigin/feature-04[m[33m, [m[1;31morigin/dev[m[33m, [m[1;32mfeature-04[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Sep 20 21:36:33 2022 -0700
+
+    Removed User and Song Alias for clear API returns. Title and createdAt queries need testing for GET /songs. Overall, ready for deployment.
+
+[33mcommit 58b539f49be61624675c3e5c0df39492f21a7cf8[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Sep 20 21:24:25 2022 -0700
+
+    Finished features 04 and features 05. Reviewing everything for deployment.
+
+[33mcommit 7a53e20bea4ff2e28ec46ce5985a4c352d7a75a3[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Mon Sep 19 21:42:14 2022 -0700
+
+    Fixed migration file names to load migrations in order.
+
+[33mcommit 6a937ab650dba339d3a971de1c32e8a20e395eba[m[33m ([m[1;31morigin/feature-02[m[33m, [m[1;32mfeature-02[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Mon Sep 19 21:31:57 2022 -0700
+
+    Made and reviewed Albums and comments routes.
+
+[33mcommit a392447da129f442de95813bd27eb4994bca8c42[m
+Merge: 23b2efa e668c99
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Sep 17 15:09:23 2022 -0700
+
+    Merge branch 'feature-01' into dev
+
+[33mcommit e668c99fcbc778d69f1e82dd234b66c8860e67c8[m[33m ([m[1;31morigin/feature-01[m[33m, [m[1;32mfeature-01[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Sep 17 15:06:31 2022 -0700
+
+    Reviewed all Songs Endpoints. Works well! Will Merge to dev.
+
+[33mcommit 608b2fa3536c555d1f672e7a366c1a3b54087cc8[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Sep 17 14:38:17 2022 -0700
+
+    Finished all Song routes and a few Album routes. All POST, PUT, and DELETE routes need review before pushing to dev.
+
+[33mcommit 23b2efa7c1a34376bc2dca37404cd6b1cf7905bb[m
+Merge: 9215a3d f14f922
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Sep 17 10:28:13 2022 -0700
+
+    Merge branch 'feature-01' into dev
+
+[33mcommit f14f92271a3f5011ffecb36664f72d98bbc48dbd[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Sep 17 10:27:33 2022 -0700
+
+    Added all seeders. No dynamic seeding. Please undo seeds then migrations when testing until dynamic seeding is added.
+
+[33mcommit 21cfb8b19a8c9d228e1d7b063e00b020c6782899[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 14 22:33:34 2022 -0700
+
+    Made seeders for Albums and Songs. Needs seeders for Playlists, Comments, and PlaylistSongs.
+
+[33mcommit 41bcee2b73e03b6de19b7943c5dcdcfdabe9fc2f[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Sep 14 20:03:06 2022 -0700
+
+    Finished Migrations and Models with associations. Will need further testing with routes.
+
+[33mcommit 9215a3d0218363e9ac7ef15316717d842215548e[m[33m ([m[1;31morigin/feature-0[m[33m, [m[1;32mfeature-0[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Sep 13 21:18:15 2022 -0700
+
+    Fixed Sign  up route. Had a bit of postman issues. Will test on main shortly after commit.
+
+[33mcommit 01937f9b59cbcd84258aa2efb837a52fcf2888a2[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Sep 13 20:23:46 2022 -0700
+
+    Added Migration references for foreign keys. Models not done yet.
+
+[33mcommit 20de9c85ccf3b9e2f935f9ae8eeab4d08c933863[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Sep 13 19:24:11 2022 -0700
+
+    Created new branch for feature 1. Made Models and migrations for the database. No validations made yet.
+
+[33mcommit 79a222d99fcd987d2f18e377cc66b66443ae6bf4[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Sep 13 00:59:36 2022 -0700
+
+    Finished Feature 0. Kept test routes for proof.
+
+[33mcommit a24d318bb7ee5381169e32c2f86d87868513bb8a[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Mon Sep 12 20:54:28 2022 -0700
+
+    Put XSERF token on / route.
+
+[33mcommit 00a4af9be4e7c91e15b0ab7cd8bfb1bb58ad9268[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sun Sep 11 22:39:56 2022 -0700
+
+    Created Heroku app. Created scripts to prepare app for Heroku Deployment.
+
+[33mcommit ea7c86d545172d94f19609acf5fa2c97e47dfb58[m[33m ([m[1;31morigin/validate-signup-inputs[m[33m, [m[1;32mvalidate-signup-inputs[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sun Sep 11 22:17:12 2022 -0700
+
+    Add User input validation on user signup backend endpoint
+
+[33mcommit 8bae639b54f603cf97d786e565d124c3ca3cb92d[m[33m ([m[1;31morigin/validate-login-inputs[m[33m, [m[1;32mvalidate-login-inputs[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sun Sep 11 22:11:27 2022 -0700
+
+    Add User input validation on user login backend endpoint
+
+[33mcommit 6d689e5cf0033ed7ce28117a3686244db9b1b540[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sun Sep 11 22:07:16 2022 -0700
+
+    Added Validation Middleware in utils directory.
+
+[33mcommit da91275b6a19bb5882ae107114071192042c733d[m[33m ([m[1;31morigin/get-session[m[33m, [m[1;32mget-session[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sun Sep 11 22:04:57 2022 -0700
+
+    Add a backend endpoint to get the current user session
+
+[33mcommit 8267c6440e6f530da8c916003ede5c67eb72793a[m[33m ([m[1;31morigin/signup[m[33m, [m[1;32msignup[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sun Sep 11 22:02:32 2022 -0700
+
+    Add User signup backend endpoint
+
+[33mcommit 5f80d1904fd80f5e82de01d0abd31888a3493552[m[33m ([m[1;31morigin/logout[m[33m, [m[1;32mlogout[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sun Sep 11 21:29:32 2022 -0700
+
+    Add User logout backend endpoint
+
+[33mcommit 9518671f06a2d9627e3b3d581605962e4883e40d[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Sep 10 16:10:11 2022 -0700
+
+    Add User Login Backend Endpoint
+
+[33mcommit 735dcfec09d0b31898e12d9c212cb45716083cab[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Sep 10 15:48:52 2022 -0700
+
+    Add User Authentication Express Middleware
+
+[33mcommit 32dfd705f53ecd514eb4fc0dca45b2251a07b97e[m[33m ([m[1;31morigin/auth-setup[m[33m, [m[1;32mauth-setup[m[33m)[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Sat Sep 10 13:48:01 2022 -0700
+
+    Added Users Table Migration and Seeds
+
+[33mcommit 82f9b1a01a1467a21730b204f17f87f8ea0ad95e[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Thu Sep 8 22:32:59 2022 -0700
+
+    Tested Error handling, and implemented error handling. Success!
+
+[33mcommit e2623e858e034653b669fd4cadf0686f52628e6f[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Thu Sep 8 22:22:38 2022 -0700
+
+    Backend routes now have XSRF Token
+
+[33mcommit 2933f018f6bd025dd96fcecc3ebd2e3abf89e089[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Thu Sep 8 22:13:29 2022 -0700
+
+    Added Backend content, and installed dependencies for server.
+
+[33mcommit 9fc75442d907e02fa192a117a1a447f5266dfde5[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Thu Sep 8 21:19:55 2022 -0700
+
+    added mock files in backend and frontend
+
+[33mcommit 0a08b1f56f3210ee98d6e4281d330cf4dddda36c[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Thu Sep 8 21:19:02 2022 -0700
+
+    added backend and frontend directory
+
+[33mcommit 3f523b91b12f39af0584faa15f9a9fe4cc6223c5[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Aug 31 22:13:31 2022 -0700
+
+    Fixed database schema image
+
+[33mcommit 55edfa8c3160138a57c1eb6ebedd67bd16812f05[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Wed Aug 31 22:12:01 2022 -0700
+
+    Made endpoints and database schema
+
+[33mcommit b7561ba9006fdc5b09c75af6d1449e935b15c7ca[m
+Author: Andre <andre.christian.silva@gmail.com>
+Date:   Tue Aug 30 20:41:40 2022 -0700
+
+    first push
+
+[33mcommit 5e3bb3383d3e0e35dbbd3ba90e853ed9cce0b304[m
+Author: avliserdna <35595989+avliserdna@users.noreply.github.com>
+Date:   Tue Aug 30 20:21:36 2022 -0700
+
+    Initial commit
