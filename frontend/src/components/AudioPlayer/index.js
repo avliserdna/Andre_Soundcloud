@@ -38,6 +38,10 @@ function AudioPlayer() {
   }
   return (
     <div>
+      <img src={song?.previewImage} />
+      {
+        console.log(song?.previewImage, "<=== preview image")
+      }
       <figure>
         <figcaption>{song?.title}</figcaption>
         <audio
@@ -48,16 +52,16 @@ function AudioPlayer() {
           </a>
         </audio>
       </figure>
-      {sessionUser.id === song.userId ? (<NavLink exact to={`/songs/${song?.id}/edit`}><button>Edit Song</button></NavLink>) : null}
-      {sessionUser.id === song.userId ? (<button onClick={(deleteSong)}>Delete Song</button>) : null}
+      {sessionUser?.id === song?.userId ? (<NavLink exact to={`/songs/${song?.id}/edit`}><button>Edit Song</button></NavLink>) : null}
+      {sessionUser?.id === song?.userId ? (<button onClick={(deleteSong)}>Delete Song</button>) : null}
       <div>
         <h2>Comments</h2>
         {comments?.map((comment) => {
           return (
-            <div key={comment.id}>
-              <p>{comment.body}</p>
-              <h4>{comment.User.username}</h4>
-              {sessionUser.id === comment.userId ? (<button onClick={(e) => deleteComment(e, comment)}>Delete Comment</button>) : null}
+            <div key={comment?.id}>
+              <p>{comment?.body}</p>
+              <h4>{comment?.User.username}</h4>
+              {sessionUser?.id === comment?.userId ? (<button onClick={(e) => deleteComment(e, comment)}>Delete Comment</button>) : null}
             </div>
           )
         })}
