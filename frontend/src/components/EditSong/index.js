@@ -20,13 +20,14 @@ function EditSong() {
   const [url, setUrl] = useState(song?.url);
   const [previewImage, setPreviewImage] = useState(song?.previewImage)
 
-  if (user?.id !== song?.userId) {
-    alert("Not authorized to edit song!")
-    history.push('/')
-  }
+
 
   useEffect(() => {
     dispatch(getSongs())
+    if (user?.id !== song?.userId) {
+      alert("Not authorized to edit song!")
+      history.push('/')
+    }
   }, [dispatch])
 
   const songUpdate = (e) => {
@@ -74,10 +75,13 @@ function EditSong() {
           onChange={(e) => setDescription(e.target.value)} />
 
         <h2>Song Upload:</h2>
+
         <input
           type="file"
           name="url"
-          onChange={songUpdate} />
+          onChange={songUpdate}
+          title="test" />
+        <label>test</label>
 
         <h2>Song Image:</h2>
         <input

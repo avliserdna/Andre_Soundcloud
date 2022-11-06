@@ -24,22 +24,19 @@ function AudioPlayer() {
 
   const deleteSong = (e) => {
     e.preventDefault();
-    console.log(song)
     dispatch(removeSong(song))
     alert("Song successfully removed!")
     history.push('/')
   }
 
   const deleteComment = (e, comment) => {
-    console.log(e)
-    console.log(comment)
     e.preventDefault();
     dispatch(removeComment(comment))
     alert("Comment successfully removed!")
     history.push(`/songs/${songId}`)
   }
   return (
-    <div>
+    <div class="song">
       <img src={song?.previewImage} />
       {
         console.log(song?.previewImage, "<=== preview image")
@@ -54,7 +51,7 @@ function AudioPlayer() {
           </a>
         </audio>
       </figure>
-      {sessionUser?.id === song?.userId ? (<NavLink exact to={`/songs/${song?.id}/edit`}><button>Edit Song</button></NavLink>) : null}
+      {sessionUser?.id === song?.userId && (<NavLink exact to={`/songs/${song?.id}/edit`}><button>Edit Song</button></NavLink>)}
       {sessionUser?.id === song?.userId ? (<button onClick={(deleteSong)}>Delete Song</button>) : null}
       <div>
         <h2>Comments</h2>
@@ -62,7 +59,7 @@ function AudioPlayer() {
           return (
             <div key={comment?.id}>
               <p>{comment?.body}</p>
-              <h4>{comment?.User.username}</h4>
+              <h4>{comment?.User?.username}</h4>
               {sessionUser?.id === comment?.userId ? (<button onClick={(e) => deleteComment(e, comment)}>Delete Comment</button>) : null}
             </div>
           )

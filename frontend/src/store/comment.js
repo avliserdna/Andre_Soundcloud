@@ -67,7 +67,7 @@ const commentReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case LOAD_COMMENTS:
-      const allComments = { ...state };
+      const allComments = {};
       console.log(action.comments, "<=== action comments")
       action.comments.forEach((comment) => {
         allComments[comment.id] = comment;

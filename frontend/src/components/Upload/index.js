@@ -40,10 +40,13 @@ function Upload() {
     }
   }
 
-  if (!user) {
-    alert("No logged in user! Please sign up or login.")
-    history.push('/')
-  }
+  useEffect(() => {
+    if (!user) {
+      alert("No logged in user! Please sign up or login.")
+      history.push('/')
+    }
+  })
+
 
   return (
     <section className="new-form">
