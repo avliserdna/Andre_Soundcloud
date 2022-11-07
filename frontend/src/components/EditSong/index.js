@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import { compose } from "redux";
 import { getSongs, updateSongs } from "../../store/songs"
 // import { getSongId } from "../../store/songs"
-
+import './EditSong.css'
 
 function EditSong() {
   const dispatch = useDispatch();
@@ -59,10 +59,10 @@ function EditSong() {
     }
   }
   return (
-    <section className="new-form">
-      <form className="upload-new-song" onSubmit={handleSubmit}>
+    <section className="edit-form">
+      <form onSubmit={handleSubmit}>
         <h1>Edit Song</h1>
-        <h2>Song Title:</h2>
+        <h3>Song Title:</h3>
         <input
           type="text"
           name="title"
@@ -70,28 +70,28 @@ function EditSong() {
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        <h2>Description:</h2>
+        <h3>Description:</h3>
         <input
           type="text"
           name="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)} />
 
-        <h2>Song Upload:</h2>
+        <h3>Song Upload:</h3>
 
         <input
           type="file"
           name="url"
           onChange={songUpdate}
           title="test" />
-        <label>test</label>
+        <label>Audio URL: {url}</label>
 
-        <h2>Song Image:</h2>
+        <h3>Song Image:</h3>
         <input
           type="file"
           name="previewImage"
           onChange={imageUpdate} />
-        <button type="submit">Update Song</button>
+        <button className="button-1" type="submit">Update Song</button>
       </form>
     </section>
   )

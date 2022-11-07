@@ -1,11 +1,26 @@
-.profileButton {
-  /* height: 30%;
-  width: 5%; */
+.edit-form {
+  display: flex;
+  align-content: space-around;
+  border: 1px solid #00ADB5;
+  margin: 50px;
   border-radius: 30px;
-  border: none;
+  flex-direction: column-reverse;
+  justify-content: space-between;
 }
 
-.logout {
+h1 {
+  margin: 25px;
+}
+
+h3 {
+  margin: 20px;
+}
+
+input {
+  margin: 20px;
+}
+
+.button-1 {
   margin: 20px;
   background-color: #222831;
   border-radius: 8px;
@@ -32,33 +47,7 @@
   touch-action: manipulation;
 }
 
-.logout:hover,
-.logout:focus {
+.button-1:hover,
+.button-1:focus {
   background-color: #393E46;
-}
-
-.profile-dropdown {
-  border: 1px solid #222831;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 30px;
-  /* font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif; */
-}
-
-ul {
-  list-style-type: none;
-}
-
-li {
-  display: flex;
-  /* padding-top: 5px;
-  padding-left: 5px; */
-  /* align-items: center; */
-  /* margin-top: 5px; */
-  position: relative;
-  flex-direction: column;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #222831;
-  font-size: 14px;
-  font-weight: 500;
 }

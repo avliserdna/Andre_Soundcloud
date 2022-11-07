@@ -41,7 +41,8 @@ function Upload() {
       alert("Song must have uploaded audio!")
     }
     else if (!previewImage) {
-
+      // While the image isnt required, the image update needs to be refactored
+      // in the scenario there is no target files being uploaded.
       alert("Image can't be empty!")
     }
     else {

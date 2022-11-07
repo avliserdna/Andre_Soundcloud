@@ -6,7 +6,7 @@ import CommentForm from "../CommentForm";
 import EditSong from "../EditSong";
 import { removeSong } from "../../store/songs";
 import { removeComment } from "../../store/comment"
-
+import './AudioPlayer.css'
 
 function AudioPlayer() {
   const history = useHistory()
@@ -51,13 +51,13 @@ function AudioPlayer() {
           </a>
         </audio>
       </figure>
-      {sessionUser?.id === song?.userId && (<NavLink to={`/songs/${song?.id}/edit`}><button>Edit Song</button></NavLink>)}
-      {sessionUser?.id === song?.userId ? (<button onClick={(deleteSong)}>Delete Song</button>) : null}
-      <div>
+      {sessionUser?.id === song?.userId && (<NavLink className="editButton" to={`/songs/${song?.id}/edit`}>Edit Song</NavLink>)}
+      {sessionUser?.id === song?.userId ? (<button className="button-1" onClick={(deleteSong)}>Delete Song</button>) : null}
+      <div className="commentHolder">
         <h2>Comments</h2>
         {comments?.map((comment) => {
           return (
-            <div key={comment?.id}>
+            <div class="comments" key={comment?.id}>
               <p>{comment?.body}</p>
               <h4>{comment?.User?.username}</h4>
               {sessionUser?.id === comment?.userId ? (<button onClick={(e) => deleteComment(e, comment)}>Delete Comment</button>) : null}
