@@ -9,7 +9,7 @@ const starterSongs = [{
   title: "Bring Me to Life",
   description: "Really Edgy music.",
   url: "https://andresoundcloud.s3.us-west-1.amazonaws.com/Evanescence+-+Bring+Me+to+Life.mp3", // https://soundcloud.com/raife-duarte/evanescence-bring-me-to-life
-  previewImage: null
+  previewImage: "https://andresoundcloud.s3.us-west-1.amazonaws.com/Evanescence_-_Bring_Me_to_Life.png"
 },
 {
   userId: 5,
@@ -17,7 +17,7 @@ const starterSongs = [{
   title: "Breaking The Habit",
   description: "Very old Linkin Park music.",
   url: "https://andresoundcloud.s3.us-west-1.amazonaws.com/09+Linkin+Park+-+Breaking+The+Habit.mp3", // https://soundcloud.com/jes-s-madrid-1/breaking-the-habit-linkin-parkguitar-cover-intrumental
-  previewImage: "image" // https://i1.sndcdn.com/artworks-000235892531-osgk53-t500x500.jpg
+  previewImage: "https://andresoundcloud.s3.us-west-1.amazonaws.com/Linkin_park_breaking_the_habit.png" // https://i1.sndcdn.com/artworks-000235892531-osgk53-t500x500.jpg
 },
 {
   userId: 5,
@@ -25,7 +25,7 @@ const starterSongs = [{
   title: "Numb",
   description: "edgy music",
   url: "https://andresoundcloud.s3.us-west-1.amazonaws.com/Linkin+Park+-++Numb+(Lyrics+%2B+Vietsub).mp3", // https://upload.wikimedia.org/wikipedia/en/b/b9/Linkin_Park_-_Numb_CD_cover.jpg
-  previewImage: "image" // https://upload.wikimedia.org/wikipedia/en/b/b9/Linkin_Park_-_Numb_CD_cover.jpg
+  previewImage: "https://andresoundcloud.s3.us-west-1.amazonaws.com/artworks-000105604285-me2956-t500x500.jpg" // https://upload.wikimedia.org/wikipedia/en/b/b9/Linkin_Park_-_Numb_CD_cover.jpg
 },
 {
   userId: 7,
@@ -33,7 +33,7 @@ const starterSongs = [{
   title: "just friends",
   description: "lofi bossa nova to cry to",
   url: "https://andresoundcloud.s3.us-west-1.amazonaws.com/just+friends.mp3",
-  previewImage: "image"
+  previewImage: "https://andresoundcloud.s3.us-west-1.amazonaws.com/justfriends.jpg"
 }
 ]
 module.exports = {
