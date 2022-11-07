@@ -235,9 +235,9 @@ router.put('/:songId', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { n
   }
   console.log(req.body, "<=== request body")
 
-  imageUrl = await singlePublicFileUpload(req.files.previewImage[0])
+  // imageUrl = await singlePublicFileUpload(req.files.previewImage[0])
 
-  const songUrl = await singlePublicFileUpload(req.files.url[0])
+  // const songUrl = await singlePublicFileUpload(req.files.url[0])
   if (req.user.id !== song.userId) {
     const err = new Error('Forbidden');
     err.status = 403;
@@ -251,7 +251,7 @@ router.put('/:songId', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { n
     userId: req.user.id,
     title,
     description,
-    url: songUrl,
+    url: url,
     previewImage: imageUrl
   })
 
