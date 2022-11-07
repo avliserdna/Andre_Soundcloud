@@ -36,7 +36,13 @@ function EditSong() {
   }
   const imageUpdate = (e) => {
     const file = e.target.files[0]
-    if (file) setPreviewImage(file)
+    if (file) {
+      setPreviewImage(file)
+    }
+    else {
+      setPreviewImage("https://andresoundcloud.s3.us-west-1.amazonaws.com/image-preview-icon-picture-placeholder-vector-31284806.png")
+    }
+
   }
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -25,7 +25,7 @@ function NewComment({ user }) {
       body
     }
     console.log(payload, "<=== PAYLOAD COMMENT")
-    const createdComment = dispatch(addComment(payload))
+    const createdComment = dispatch(addComment(payload, user))
     console.log(user, "-------------------------------------------------------------------THIS IS THE USER OBJECT")
     if (createdComment) {
       alert("Comment successfully added!")

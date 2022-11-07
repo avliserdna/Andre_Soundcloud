@@ -73,7 +73,6 @@ export const logout = () => async (dispatch) => {
 
 const initialState =
 {
-  user: null
 }
 
 export const sessionReducer = (state = initialState, action) => {
@@ -84,7 +83,7 @@ export const sessionReducer = (state = initialState, action) => {
       return userState
     case LOGOUT:
       const loggedOutState = { ...state };
-      loggedOutState.user = null
+      loggedOutState.user = initialState
       return loggedOutState
 
     default:

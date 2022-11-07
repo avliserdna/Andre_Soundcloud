@@ -19,7 +19,7 @@ const deleteComment = (commentId) => ({
   commentId
 })
 
-export const addComment = (comment) => async (dispatch) => {
+export const addComment = (comment, user) => async (dispatch) => {
   const { userId, songId, body } = comment;
 
   // const formData = new FormData();
@@ -34,9 +34,8 @@ export const addComment = (comment) => async (dispatch) => {
     },
     body: JSON.stringify(comment)
   })
-
   const data = await response.json()
-  console.log(data, "<==== COMMENT DATA")
+  data.User = user
   dispatch(addComments(data))
   return response
 }

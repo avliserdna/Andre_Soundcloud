@@ -1,9 +1,11 @@
 div {
-  border-style: double;
-  border-color: black;
+  border: 1px solid black
 }
 
+/* FFEFD6 */
 #navigation {
-  border-style: dotted;
-  border-color: blue;
+  border: 1px solid black;
+  width: 25%;
+  height: 90%;
+
 }
