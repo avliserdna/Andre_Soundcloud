@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink, useHistory } from "react-router-dom"
 import { addSong } from "../../store/songs"
+import './Upload.css';
 
 function Upload() {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ function Upload() {
     <section className="new-form">
       <form className="upload-new-song" onSubmit={handleSubmit}>
         <h1>New Song</h1>
-        <h2>Song Title:</h2>
+        <h3>Song Title:</h3>
         <input
           type="text"
           name="title"
@@ -61,25 +62,25 @@ function Upload() {
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        <h2>Description:</h2>
+        <h3>Description:</h3>
         <input
           type="text"
           name="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)} />
 
-        <h2>Song Upload:</h2>
+        <h3>Song Upload:</h3>
         <input
           type="file"
           name="url"
           onChange={songUpdate} />
 
-        <h2>Song Image:</h2>
+        <h3>Song Image:</h3>
         <input
           type="file"
           name="previewImage"
           onChange={imageUpdate} />
-        <button type="submit">Create New Song</button>
+        <button className="button-1" type="submit">Create New Song</button>
       </form>
     </section>
   )

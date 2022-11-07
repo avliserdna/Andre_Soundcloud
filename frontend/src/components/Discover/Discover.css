@@ -3,7 +3,11 @@
   justify-content: space-around;
   border: solid;
   width: 750px;
-  background-color: #00ADB5;
+  display: flex;
+  align-content: space-around;
+  border: 1px solid #00ADB5;
+  margin: 50px;
+  border-radius: 30px;
 }
 
 #discover-body {
@@ -19,4 +23,10 @@ img {
   border-radius: 4px;
   padding: 5px;
   width: 150px;
+}
+
+img {
+  border: 1px solid #393E46;
+  border-radius: 30px;
+  margin: 15px;
 }

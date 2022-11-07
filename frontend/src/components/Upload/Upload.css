@@ -1,15 +1,22 @@
-.loginForm {
+.new-form {
   display: flex;
   align-content: space-around;
   border: 1px solid #00ADB5;
   margin: 50px;
-
+  border-radius: 30px;
 }
 
-/*
-.label {
+h1 {
+  margin: 25px;
+}
 
-} */
+h3 {
+  margin: 20px;
+}
+
+input {
+  margin: 20px;
+}
 
 .button-1 {
   margin: 20px;

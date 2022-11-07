@@ -1,17 +1,10 @@
-.loginForm {
-  display: flex;
-  align-content: space-around;
-  border: 1px solid #00ADB5;
-  margin: 50px;
-
+.profileButton {
+  height: 30%;
+  width: 5%;
+  border-radius: 30px;
 }
 
-/*
-.label {
-
-} */
-
-.button-1 {
+.logout {
   margin: 20px;
   background-color: #222831;
   border-radius: 8px;
@@ -38,7 +31,7 @@
   touch-action: manipulation;
 }
 
-.button-1:hover,
-.button-1:focus {
+.logout:hover,
+.logout:focus {
   background-color: #393E46;
 }

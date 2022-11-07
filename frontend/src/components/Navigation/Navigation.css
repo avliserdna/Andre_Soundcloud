@@ -5,10 +5,47 @@
 /* FFEFD6 */
 #navigation {
   display: flex;
-  border: 1px solid black;
-  /* width: 25%;
-  height: 90%; */
-  background-color: #00ADB5;
+  align-content: space-around;
+  border: 1px solid #00ADB5;
+  margin: 50px;
   justify-content: space-around;
   align-items: center;
+  border-radius: 30px;
+  text-align: center;
+}
+
+a {
+  /* border: 1px solid #00ADB5; */
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  /* height: 10%;width: 20%; */
+  text-align: center;
+  background-color: #222831;
+  color: #EEEEEE;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 15px;
+  margin-top: 50px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+a:focus {
+  background-color: #393E46;
 }

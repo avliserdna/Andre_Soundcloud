@@ -18,20 +18,20 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
 
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink className="link" to="/login">Log In</NavLink>
+        <NavLink className="link" to="/signup">Sign Up</NavLink>
       </>
     );
   }
 
   return (
 
-    <div id="navigation">
+    <ul id="navigation">
       <h1 class="title">Life is Sound</h1>
-      <NavLink exact to="/">Home</NavLink>
-      <NavLink to="/upload">Upload</NavLink>
+      <NavLink className="link" exact to="/">Home</NavLink>
+      <NavLink className="link" to="/upload">Upload</NavLink>
       {isLoaded && sessionLinks}
-    </div>
+    </ul>
 
   );
 }
