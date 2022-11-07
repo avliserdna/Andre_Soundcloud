@@ -25,14 +25,14 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <ul>
-      <li id="navigation">
-        <h1 class="title">Life is Sound</h1>
-        <NavLink exact to="/">Home</NavLink>
-        <NavLink to="/upload">Upload</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+
+    <div id="navigation">
+      <h1 class="title">Life is Sound</h1>
+      <NavLink exact to="/">Home</NavLink>
+      <NavLink to="/upload">Upload</NavLink>
+      {isLoaded && sessionLinks}
+    </div>
+
   );
 }
 

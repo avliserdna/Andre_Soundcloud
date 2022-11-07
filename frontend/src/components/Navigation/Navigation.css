@@ -1,11 +1,14 @@
-div {
+/* div {
   border: 1px solid black
-}
+} */
 
 /* FFEFD6 */
 #navigation {
+  display: flex;
   border: 1px solid black;
-  width: 25%;
-  height: 90%;
-
+  /* width: 25%;
+  height: 90%; */
+  background-color: #00ADB5;
+  justify-content: space-around;
+  align-items: center;
 }
