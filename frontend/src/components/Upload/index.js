@@ -18,28 +18,48 @@ function Upload() {
 
   const songUpdate = (e) => {
     const file = e.target.files[0]
+
     if (file) setUrl(file)
   }
 
   const imageUpdate = (e) => {
     const file = e.target.files[0]
-    if (file) setPreviewImage(file)
+    if (file) {
+      setPreviewImage(file)
+    }
+    else {
+      setPreviewImage("https://andresoundcloud.s3.us-west-1.amazonaws.com/image-preview-icon-picture-placeholder-vector-31284806.png")
+    }
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = {
-      userId,
-      albumId,
-      title,
-      description,
-      url,
-      previewImage
-    }
-    const createdSong = await dispatch(addSong(payload))
-    if (createdSong) {
+    if (!title) {
+      alert("Title can't be empty!")
 
-      history.push('/');
     }
+    else if (!url) {
+      alert("Song must have uploaded audio!")
+    }
+    else if (!previewImage) {
+
+      alert("Image can't be empty!")
+    }
+    else {
+      const payload = {
+        userId,
+        albumId,
+        title,
+        description,
+        url,
+        previewImage
+      }
+      const createdSong = await dispatch(addSong(payload))
+      if (createdSong) {
+
+        history.push('/');
+      }
+    }
+
   }
 
   useEffect(() => {
@@ -47,6 +67,7 @@ function Upload() {
       alert("No logged in user! Please sign up or login.")
       history.push('/')
     }
+
   })
 
 
