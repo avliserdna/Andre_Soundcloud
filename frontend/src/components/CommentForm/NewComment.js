@@ -29,6 +29,7 @@ function NewComment({ user }) {
     console.log(user, "-------------------------------------------------------------------THIS IS THE USER OBJECT")
     if (createdComment) {
       alert("Comment successfully added!")
+      setBody("")
       history.push(`/songs/${songId}`)
     }
   }

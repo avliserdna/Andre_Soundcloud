@@ -8,7 +8,7 @@ function CommentForm() {
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
-  if (sessionUser) {
+  if (sessionUser.username) {
     sessionLinks = (
       <NewComment user={sessionUser} />
     )

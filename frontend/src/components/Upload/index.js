@@ -36,6 +36,7 @@ function Upload() {
     }
     const createdSong = await dispatch(addSong(payload))
     if (createdSong) {
+
       history.push('/');
     }
   }
