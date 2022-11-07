@@ -54,17 +54,17 @@ function AudioPlayer() {
       {sessionUser?.id === song?.userId && (<NavLink className="editButton" to={`/songs/${song?.id}/edit`}>Edit Song</NavLink>)}
       {sessionUser?.id === song?.userId ? (<button className="button-1" onClick={(deleteSong)}>Delete Song</button>) : null}
       <div className="commentHolder">
-        <h2>Comments</h2>
+
         {comments?.map((comment) => {
           return (
             <div class="comments" key={comment?.id}>
-              <p>{comment?.body}</p>
-              <h4>{comment?.User?.username}</h4>
-              {sessionUser?.id === comment?.userId ? (<button onClick={(e) => deleteComment(e, comment)}>Delete Comment</button>) : null}
+              <p className="commentBody">{comment?.body}</p>
+              <h4 className="commentUser">{comment?.User?.username}</h4>
+              {sessionUser?.id === comment?.userId ? (<button className="button-1" onClick={(e) => deleteComment(e, comment)}>Delete Comment</button>) : null}
             </div>
           )
         })}
-
+        <h2 className="commentTitle">Comments</h2>
       </div>
       <CommentForm user={sessionUser} />
     </div>
