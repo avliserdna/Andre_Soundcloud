@@ -17,7 +17,7 @@
 
 // frontend/src/App.js
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage"
@@ -32,6 +32,7 @@ import EditSong from "./components/EditSong";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  // const sessionUser = useSelector((state) => state.session.user);
   useEffect(() => {
     dispatch(sessionActions.restore()).then(() => setIsLoaded(true));
     dispatch(getSongs())

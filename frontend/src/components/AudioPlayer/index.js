@@ -51,7 +51,7 @@ function AudioPlayer() {
           </a>
         </audio>
       </figure>
-      {sessionUser?.id === song?.userId && (<NavLink exact to={`/songs/${song?.id}/edit`}><button>Edit Song</button></NavLink>)}
+      {sessionUser?.id === song?.userId && (<NavLink to={`/songs/${song?.id}/edit`}><button>Edit Song</button></NavLink>)}
       {sessionUser?.id === song?.userId ? (<button onClick={(deleteSong)}>Delete Song</button>) : null}
       <div>
         <h2>Comments</h2>
@@ -66,7 +66,7 @@ function AudioPlayer() {
         })}
 
       </div>
-      <CommentForm />
+      <CommentForm user={sessionUser} />
     </div>
   )
 }

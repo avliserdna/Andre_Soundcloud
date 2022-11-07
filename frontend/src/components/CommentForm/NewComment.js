@@ -8,13 +8,17 @@ function NewComment({ user }) {
   const history = useHistory()
   // const song = useSelector((state) => state.song)
   const [body, setBody] = useState("")
-  const [userId, setUserId] = useState(user.id)
-  // const [songId, setSongId] = useState(song.id)
+  const [userId, setUserId] = useState(user?.id)
+  // const [songId, setSongId] = useState(swong.id)
   const { songId } = useParams()
 
   // console.log(song, "<=== SONG")
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (user) {
+      setUserId(user?.id)
+    }
+    console.log(userId, "<===THIS IS THE USER ID")
     const payload = {
       songId,
       userId,
@@ -22,7 +26,7 @@ function NewComment({ user }) {
     }
     console.log(payload, "<=== PAYLOAD COMMENT")
     const createdComment = dispatch(addComment(payload))
-
+    console.log(user, "-------------------------------------------------------------------THIS IS THE USER OBJECT")
     if (createdComment) {
       alert("Comment successfully added!")
       history.push(`/songs/${songId}`)

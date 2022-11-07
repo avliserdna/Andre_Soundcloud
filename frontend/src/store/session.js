@@ -41,7 +41,7 @@ export const restore = () => async dispatch => {
   const response = await csrfFetch('/api/session');
   const data = await response.json();
 
-  dispatch(restoreUser(data.user));
+  dispatch(restoreUser(data));
   return response;
 
 };
@@ -59,7 +59,7 @@ export const signup = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  dispatch(signUpUser(data.user));
+  dispatch(signUpUser(data));
   return response;
 };
 
