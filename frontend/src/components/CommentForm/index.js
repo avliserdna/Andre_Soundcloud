@@ -17,7 +17,7 @@ function CommentForm() {
   else {
     return <>
       <h1>You must be logged in to post a comment!</h1>
-      <button className="button-1"><NavLink to="/login">Login</NavLink></button>
+      <NavLink className="login" to="/login">Login</NavLink>
     </>
   }
 }
