@@ -18,7 +18,7 @@ function Upload() {
 
   const songUpdate = (e) => {
     const file = e.target.files[0]
-
+    console.log(file)
     if (file) setUrl(file)
   }
 
@@ -54,6 +54,7 @@ function Upload() {
         url,
         previewImage
       }
+      console.log(url)
       const createdSong = await dispatch(addSong(payload))
       if (createdSong) {
 

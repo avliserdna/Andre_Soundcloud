@@ -31,11 +31,17 @@ function EditSong() {
   }, [dispatch])
 
   const songUpdate = (e) => {
+    console.log(e, "<=== song update")
     const file = e.target.files[0]
-    if (file) setUrl(file)
+    console.log(file, "<=== current file")
+    if (file) {
+      setUrl("")
+      setUrl(file)
+    }
   }
   const imageUpdate = (e) => {
     const file = e.target.files[0]
+    console.log(file)
     if (file) {
       setPreviewImage(file)
     }
@@ -53,6 +59,7 @@ function EditSong() {
       previewImage
     }
     console.log(payload, "<=== edit payload")
+    console.log(previewImage)
     const updatedSong = await dispatch(updateSongs(payload))
     if (updatedSong) {
       history.push('/')
@@ -84,7 +91,7 @@ function EditSong() {
           name="url"
           onChange={songUpdate}
           title="test" />
-        <label>Audio URL: {url}</label>
+        {/* <label>Audio URL: {url}</label> */}
 
         <h3>Song Image:</h3>
         <input
