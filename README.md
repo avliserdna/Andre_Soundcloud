@@ -51,6 +51,14 @@ Full Backend API was created by Andre Silva
 
 A local instance of the website should start after the npm start on the front end services. If you close your backend directory, data will not render properly on the frontend directory.
 
+## To-Do List
+1. Improve UI to be much more intuitive, and aligned.
+2. Add a Loading Image/Asset while adding new songs.
+3. Work on Album module.
+4. Work on Edit User information Module.
+5. Work on Playlists Module.
+6. Work on Edit Comments module
+
 
 ## Database Schema
 
