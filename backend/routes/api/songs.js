@@ -224,7 +224,7 @@ router.post('/', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { name: '
 router.put('/:songId', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { name: 'previewImage', maxCount: 1 }]), async (req, res, next) => {
   const { songId } = req.params;
   const song = await Song.findByPk(songId)
-  const { title, description, url, imageUrl, albumId } = req.body
+  let { title, description, url, previewImage, albumId } = req.body
   console.log(song, "<=== song")
   if (!song) {
     const err = new Error('Not Found');
@@ -234,10 +234,18 @@ router.put('/:songId', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { n
     return next(err);
   }
   console.log(req.body, "<=== request body")
+  console.log(previewImage, "<=== preview image")
+  let imageUrl;
+  let songUrl;
+  if (req.files.previewImage) {
+    imageUrl = await singlePublicFileUpload(req.files.previewImage[0])
+  }
 
-  // imageUrl = await singlePublicFileUpload(req.files.previewImage[0])
+  console.log(imageUrl, "<=== imageUrl")
+  if (req.files.url) {
+    songUrl = await singlePublicFileUpload(req.files.url[0])
+  }
 
-  // const songUrl = await singlePublicFileUpload(req.files.url[0])
   if (req.user.id !== song.userId) {
     const err = new Error('Forbidden');
     err.status = 403;
@@ -245,13 +253,13 @@ router.put('/:songId', multipleFileKeysUpload([{ name: 'url', maxCount: 1 }, { n
     err.errors = ['Not Authorized to add to album!']
     return next(err);
   }
-
+  console.log(previewImage, "<=== preview image")
   await song.update({
     albumId: JSON.parse(albumId),
     userId: req.user.id,
     title,
     description,
-    url: url,
+    url: songUrl,
     previewImage: imageUrl
   })
 
