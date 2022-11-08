@@ -43,6 +43,7 @@ function EditSong() {
     const file = e.target.files[0]
     console.log(file)
     if (file) {
+      setPreviewImage("")
       setPreviewImage(file)
     }
 
@@ -58,8 +59,7 @@ function EditSong() {
       url,
       previewImage
     }
-    console.log(payload, "<=== edit payload")
-    console.log(previewImage)
+    console.log(previewImage, "<===== PREVIEW IMAGE")
     const updatedSong = await dispatch(updateSongs(payload))
     if (updatedSong) {
       history.push('/')

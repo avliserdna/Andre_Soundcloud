@@ -7,7 +7,8 @@ function Discover() {
   const dispatch = useDispatch();
   const songs = useSelector((state) => {
     return Object.values(state.song)
-  })
+  });
+
   useEffect(() => {
     dispatch(getSongs())
   }, [dispatch])
@@ -18,9 +19,9 @@ function Discover() {
       {songs?.map((song) => {
         if (song) {
           return (
-            <div id="discover-song" key={song.id}>
-              <img src={song.previewImage} />
-              <NavLink to={`/songs/${song.id}`}>{song?.title}</NavLink>
+            <div id="discover-song" key={song?.id}>
+              <img src={song?.previewImage} />
+              <NavLink to={`/songs/${song?.id}`}>{song?.title}</NavLink>
             </div>
           )
         }
