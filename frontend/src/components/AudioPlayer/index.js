@@ -43,6 +43,7 @@ function AudioPlayer() {
       }
       <figure>
         <figcaption>{song?.title}</figcaption>
+        <figcaption className="description">{song?.description}</figcaption>
         <audio
           controls
           src={song?.url}>

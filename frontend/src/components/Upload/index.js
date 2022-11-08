@@ -65,7 +65,7 @@ function Upload() {
   }
 
   useEffect(() => {
-    if (!user) {
+    if (!Object.values(user).length) {
       alert("No logged in user! Please sign up or login.")
       history.push('/')
     }
