@@ -58,8 +58,8 @@ A local instance of the website should start after the npm start on the front en
 4. Work on Edit User information Module.
 5. Work on Playlists Module.
 6. Work on Edit Comments module
-
-
+7. Add a Currently Playing component, to allow users to listen to music on other parts of the website.
+8. Add a Shuffle method for Albums and Playlists.
 ## Database Schema
 
 ![Soundcloud Database](./db_schema.png)
