@@ -54,7 +54,7 @@ function AudioPlayer() {
       {sessionUser?.id === song?.userId && (<NavLink className="editButton" to={`/songs/${song?.id}/edit`}>Edit Song</NavLink>)}
       {sessionUser?.id === song?.userId ? (<button className="button-1" onClick={(deleteSong)}>Delete Song</button>) : null}
       <div className="commentHolder">
-
+        <h2 className="commentTitle">Comments</h2>
         {comments?.map((comment) => {
           return (
             <div class="comments" key={comment?.id}>
@@ -64,7 +64,7 @@ function AudioPlayer() {
             </div>
           )
         })}
-        <h2 className="commentTitle">Comments</h2>
+
       </div>
       <CommentForm user={sessionUser} />
     </div>

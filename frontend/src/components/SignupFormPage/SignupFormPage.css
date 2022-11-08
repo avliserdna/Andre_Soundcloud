@@ -1,33 +1,20 @@
-.new-form {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.signUp {
   display: flex;
   align-content: space-around;
   border: 1px solid #00ADB5;
   margin: 50px;
+  flex-flow: column wrap;
   border-radius: 30px;
-
 }
 
-h1 {
-  margin: 25px;
-}
 
-h3 {
-  margin: 20px;
-}
-
-input {
-  margin: 20px;
-}
-
-input[type=text],
-select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 10px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+label {
+  font-family: 'Roboto', sans-serif;
+  margin: 5px;
+  display: flex;
+  flex-flow: column wrap;
 }
 
 .button-1 {
@@ -39,7 +26,7 @@ select {
   color: #FFFFFF;
   cursor: pointer;
   display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 500;
   height: 40px;

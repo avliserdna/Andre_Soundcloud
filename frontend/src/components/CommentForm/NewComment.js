@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { addComment } from "../../store/comment";
-
+import "./CommentForm.css"
 function NewComment({ user }) {
   const dispatch = useDispatch()
   const history = useHistory()
@@ -37,14 +37,14 @@ function NewComment({ user }) {
     <>
       <section className="new-comment">
         <form className="make-new-comment" onSubmit={handleSubmit}>
-          <h3>New Comment</h3>
+          <h3 className="newComment">New Comment</h3>
           <input
             type="textarea"
             name="body"
             value={body}
             onChange={(e) => setBody(e.target.value)}>
           </input>
-          <button type="submit">
+          <button className="button-1" type=" submit">
             Post Comment
           </button>
         </form>
