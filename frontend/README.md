@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+## Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Name
 
-## Available Scripts
+"Life is Sound"
 
-In the project directory, you can run:
+## Intro
 
-### `npm start`
+"Life is Sound" is a music website that lets you upload music to fellow users, and listen to the music with them. As of the 1.0 build, the website allows users to share music to users and allow them to download it locally. It is an ever expanding website that takes inspiration from the website, Soundcloud. As such, it parallels in functionality with Soundcloud.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Live Site Link
+https://andresoundcloud.herokuapp.com/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Backend Repo link
 
-### `npm test`
+https://github.com/avliserdna/Andre_Soundcloud/tree/main/backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
+Below is a list of the technologies used to create "Life is Sound".
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Visual Studio Code
+* HTML
+* CSS
+* React
+* Redux
+* Node.js
+* Express
+* Sequelize
+* Heroku
+* Sqlite
+* AWS
+* FontAwesome
+* Favicon
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Full Backend API was created by Andre Silva
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Sample Image
 
-### `npm run eject`
+![Sample Image](./LifeIsSound.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## How to Launch Locally
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone/Download this project repository to your machine.
+2. Extract the directory, and have two terminal windows ready (for Windows, make sure you're using WSL).
+3. Install Node.js, SQLite, and Sequelize before running.
+4. Once all have been insalled, cd into to the Andre_Soundcloud directory, then to the backend directory on your first terminal.
+5. On the 2nd terminal, cd into the Andre_Soundcloud directory, then to the frontend directory.
+6. Type npm_start on your backend directory, and wait for the backend services to run.
+7. Type npm_start on your frontend directory, and wait for the frontend services to run too.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A local instance of the website should start after the npm start on the front end services. If you close your backend directory, data will not render properly on the frontend directory.
