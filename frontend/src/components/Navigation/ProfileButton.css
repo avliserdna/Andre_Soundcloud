@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 .profileButton {
   /* height: 30%;
   width: 5%; */
@@ -14,7 +16,7 @@
   color: #FFFFFF;
   cursor: pointer;
   display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 500;
   height: 40px;
@@ -57,7 +59,7 @@ li {
   /* margin-top: 5px; */
   position: relative;
   flex-direction: column;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #222831;
   font-size: 14px;
   font-weight: 500;
